@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>Vindstyrkeberegning</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="stil.css" />
+  </head>
+  <body>
+    <h1>Beregn vindstyrke!</h1>
+    
+    <div class="box1">
+      <h2>Skriv inn vindstyrke i meter per sekund:</h2>
+      <input type="number" id="vindstyrke">
+
+      <button class="avbryt">Beregn</button>
+      <p id="resultat"></p>
+    </div>
+
+
+ <script>
+  //Definerar Html-elementa
+  var vindstyrkeEl = document.querySelector("#vindstyrke");
+  var knappEl = document.querySelector("button");
+  var resultatEl = document.querySelector("#resultat");
+
+  //Legg inn lyttar på knappen
+  knappEl.addEventListener("click", reknUt);
+
+  //Definerar funksjonen reknUt
+  function reknUt(){
+    //Variabel som held styr på wattproduksjonen
+    var watt = 0
+    //Hentar den oppgivne vindstyrken
+    var vindstyrke = Number(vindstyrkeEl.value);
+    console.log(vindstyrke);
+
+    //Bereknar wattproduksjonen
+      if(vindstyrke < 2.5){
+        //Sett wattproduksjonen til 0 watt i timen
+        watt = 0;
+        } else if (vindstyrke < 3.4){
+          //Set wattproduksjonen til 10
+          watt = 2;
+          } else if (vindstyrke < 5.5){
+            //Set wattproduksjonen til 60
+            watt = 10;
+            } else if (vindstyrke < 8){
+              //Set wattproduksjonen til 150
+              watt = 60;
+              } else if (vindstyrke < 10.8){
+                //Set wattproduksjonen til 400
+                watt = 150;
+                } else if (vindstyrke < 13.9){
+                  //Set wattproduksjonen til 500
+                  watt = 400;
+                  } else if (vindstyrke <= 15){
+                    //Set wattproduksjonen til 0, vindmølla produserar ikkje straum ved vind over 15 m/s
+                    watt = 500;
+                  } 
+
+      //Skriv ut wattproduksjonen:
+      resultatEl.innerHTML = watt + " watt."
+  }
+ </script>
+
+ </body>
+</html>  

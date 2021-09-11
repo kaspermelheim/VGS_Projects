@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Kalkulator</title>
+        <link rel="stylesheet" type="text/css" href="Andregradsformel.css">
+    </head>
+    <body id="enter">
+
+        <div class="innpakning">
+    
+                <h1>Kalkulator</h1>
+            
+
+            <div id="inputdiv">
+                <input type="number" id="tal1">
+                    <input type="number" id="tal2">
+                    <input type="number" id="tal3"><br>
+                
+
+            <select id="nedtrekk" name="valg">
+                <option value="addisjon">Addisjon</option>
+                <option value="subtraksjon">Subtraksjon</option>
+                <option value="divisjon">Divisjon</option>
+                <option value="multiplikasjon">Multiplikasjon</option>
+                <option value="multiplikasjon2">x^2</option>
+                <option value="eopphogd">e^x</option>
+                <option value="kvadratrot">Kvadratrot</option>
+                <option value="andregrads">Andregrad</option>
+            </select><br><br>
+            </div>
+
+            <div id="sumdiv">
+                <button id="knapp">Løys:</button>
+                <div id="box"></div>
+            </div>
+        </div>
+
+        <div id="copyright">
+            <p>Made by: Kasper Melheim</p>
+        </div>
+
+        <script>
+            // Hentar element
+           var tal1El = document.querySelector("#tal1");
+           var tal2El = document.querySelector("#tal2");
+           var tal3El = document.querySelector("#tal3");
+           var knappEl = document.querySelector("#knapp");
+           var resultatEl = document.querySelector("#box");
+           var nedtrekkEl = document.querySelector("#nedtrekk");
+
+            // Legg til lyttarar
+           knappEl.addEventListener("click", finnUt);
+           nedtrekkEl.addEventListener("input", rydd);
+
+            // Funksjon for å fjerne eller legge til input element etter behov
+           function rydd() {
+            if (nedtrekkEl.value == "divisjon") {
+                   document.getElementById("tal3").style.display = "none";
+               }   else if (nedtrekkEl.value == "multiplikasjon2") {
+                     document.getElementById("tal3").style.display = "none";
+                     document.getElementById("tal2").style.display = "none";
+               }   else if (nedtrekkEl.value == "eopphogd") {
+                    document.getElementById("tal2").style.display = "none";
+                    document.getElementById("tal3").style.display = "none";
+               }    else if (nedtrekkEl.value == "kvadratrot") {
+                    document.getElementById("tal2").style.display = "none";
+                    document.getElementById("tal3").style.display = "none";
+               } else {
+                    document.getElementById("tal2").style.display = "inline-block";
+                    document.getElementById("tal3").style.display = "inline-block";
+                    document.getElementById("tal1").style.display = "inline-block";
+               }
+           }
+
+           // Kode som gjer at enter aktiverer click hendelse på knapp
+           var enterEl = document.getElementById("enter");
+            enterEl.addEventListener("keyup", function(event) {
+            event.preventDefault();
+
+            if (event.keyCode === 13) {
+                knappEl.click();
+                }
+            });
+               
+            // Funksjon for å finne ut kva rekning som er valt
+           function finnUt() {
+
+               // Lagrar verdiane i input og gjer dei om til number
+               var tal1 = Number(tal1El.value); var tal2 = Number(tal2El.value); var tal3 = Number(tal3El.value);
+
+                // Løkke som sjekkar kva type rekning ein har valt
+               if (nedtrekkEl.value == "addisjon") {
+                   var sum = tal1 + tal2 + tal3; 
+                   resultatEl.innerHTML = sum.toFixed(2);
+               } else if (nedtrekkEl.value == "subtraksjon") {
+                        var sum = tal1 - tal2 - tal3;
+                        resultatEl.innerHTML = sum.toFixed(2);
+               } else if (nedtrekkEl.value == "divisjon") {
+                        var sum = tal1 / tal2;
+                        resultatEl.innerHTML = sum.toFixed(2);
+               } else if (nedtrekkEl.value == "multiplikasjon") {
+                        var sum = tal1 * tal2 * tal3;
+                        resultatEl.innerHTML = sum.toFixed(2);
+               } else if (nedtrekkEl.value == "multiplikasjon2") {
+                        var sum = Math.pow(tal1, 2);
+                        resultatEl.innerHTML = sum.toFixed(2); 
+               } else if (nedtrekkEl.value == "eopphogd") {
+                        var sum = Math.pow(2.718281828, tal1);
+                        resultatEl.innerHTML = sum.toFixed(4);
+               } else if (nedtrekkEl.value == "kvadratrot") {
+                        var sum = Math.sqrt(tal1);
+                        resultatEl.innerHTML = sum.toFixed(2);
+               }
+               else if (nedtrekkEl.value == "andregrads") {
+                   // Math.sqrt for å finne kvadratrot og Math.pow for å få potens
+                        var sum1 = (-1 * tal2 + Math.sqrt(Math.pow(tal2, 2) - (4 * tal1 * tal3))) / (2 * tal1);
+                        var sum2 = (-1 * tal2 - Math.sqrt(Math.pow(tal2, 2) - (4 * tal1 * tal3))) / (2 * tal1);
+                        resultatEl.innerHTML = "x = " + sum1.toFixed(2) + " og " + sum2.toFixed(2);
+               }
+           }
+
+        </script>
+    
+    </body>
+</html>

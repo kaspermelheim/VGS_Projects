@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <style>
+    
+    body { 
+        margin-top: 110px;
+        background-color: lightblue;
+    }
+     h1 { 
+         color: grey;
+         font-size: 60px;
+     }
+
+     b { 
+         color: grey;
+     }
+
+      
+      
+    
+    </style>
+</head>
+<body>
+    <div>
+        <center>
+<h1>Kalkulator</h1>
+<br>
+
+<br>
+<br>
+    <b>Tal 1</b>
+    <input type="number" id="tal1">
+    <b>Tal 2</b>
+    <input type="number" id="tal2">
+<br>
+<br>
+    <button id="knapp">Finn summen pluss</button>
+
+    <button id="knapp1">Finn summen minus</button>
+
+    <button id="knapp2">Finn summen multiplikasjon</button>
+
+    
+    <button id="knapp3">Finn summen divisjon</button>
+
+
+<br>
+<br>
+    <p id="resultat"></p>
+    <p id="resultat1"></p>
+    <p id="resultat3"></p>
+    <p id="resultat4"></p>
+    <hr>
+    <hr>
+
+    <div class="sum">
+        <script>
+        var tal1El = document.querySelector("#tal1");
+        var tal2El = document.querySelector("#tal2");
+        var knappEl = document.querySelector("#knapp");
+        var resultatEl = document.querySelector("#resultat");
+
+        knappEl.addEventListener("click", reknUt);
+
+        function reknUt() { 
+            var tal1 = Number(tal1El.value);
+            var tal2 = Number(tal2El.value);
+            var sum = tal1 + tal2;
+
+            resultatEl.innerHTML = "Summen av " + tal1 + " og " + tal2 + " er " + sum;
+
+             }
+
+        var tal1El = document.querySelector("#tal1");
+        var tal2El = document.querySelector("#tal2");
+        var knapp1El = document.querySelector("#knapp1");
+        var resultat1El = document.querySelector("#resultat1");
+
+        knapp1El.addEventListener("click", reknUt1);
+
+        function reknUt1() { 
+            var tal1 = Number(tal1El.value);
+            var tal2 = Number(tal2El.value);
+            var sum = tal1 - tal2;
+
+            resultat1El.innerHTML = "Summen av " + tal1 + " minus " + tal2 + " er " + sum;
+
+             }
+
+             var tal1El = document.querySelector("#tal1");
+        var tal2El = document.querySelector("#tal2");
+        var knapp2El = document.querySelector("#knapp2");
+        var resultat2El = document.querySelector("#resultat2");
+
+        knapp2El.addEventListener("click", reknUt2);
+
+        function reknUt2() { 
+            var tal1 = Number(tal1El.value);
+            var tal2 = Number(tal2El.value);
+            var sum = tal1 * tal2;
+
+            resultat1El.innerHTML = "Summen av " + tal1 + " gange " + tal2 + " er " + sum;
+
+             }
+
+             var tal1El = document.querySelector("#tal1");
+        var tal2El = document.querySelector("#tal2");
+        var knapp3El = document.querySelector("#knapp3");
+        var resultat3El = document.querySelector("#resultat3");
+
+        knapp3El.addEventListener("click", reknUt3);
+
+        function reknUt3() { 
+            var tal1 = Number(tal1El.value);
+            var tal2 = Number(tal2El.value);
+            var sum = tal1 / tal2;
+
+            resultat1El.innerHTML = "Summen av " + tal1 + " delt " + tal2 + " er " + sum;
+
+             }
+
+             sum();
+
+
+
+         
+
+
+         
+
+
+        
+        </script>
+        </div>
+        </center>
+    </center>
+        </div>
+        <center>
+            <br>
+            <br>
+            <a href="kalkulator.html">
+            <button>Reset</button>
+        </a>
+        </center>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rotation</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(245, 231, 151);
+            }
+            h1 {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 22px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .styrke1 { 
+                transform-origin:50% 50%;
+                animation:7s rotateRight infinite linear; 
+                margin-top: 40px;
+            }
+            .styrke2 { 
+                transform-origin:50% 50%;
+                animation:3s rotateRight infinite linear; 
+                margin-top: 40px;
+            }
+            .styrke3 { 
+                transform-origin:50% 50%;
+                animation:1s rotateRight infinite linear; 
+                margin-top: 40px;
+            }
+            .styrke4 { 
+                transform-origin:50% 50%;
+                animation:0s rotateRight infinite linear; 
+                margin-top: 40px;
+            }
+
+            @keyframes rotateRight {
+                100% { transform:rotate(-360deg); }
+            }
+            
+            .inputdiv {
+                margin-top: 40px;
+                background-color: rgb(218, 216, 103);
+                font-size: 20px;
+                padding: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }   
+            #wrapper {
+                background-color: rgb(255, 253, 160);
+                border-left: solid 3px black;
+                border-right: solid 3px black;
+            }
+            #img1 {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <body onload="go()">
+        <div id="wrapper">
+            <h1>Vindstyrke: Animasjon</h1>
+            <img id="img1"style="margin-top:40px;" src="windmill.png" width="350px" height="350px">
+            <div class="inputdiv">
+                <input type="radio" name="radio" value="4" id="styrke4" checked>Vindstille
+                <input type="radio" name="radio" value="1" id="styrke1" >Rolig vind
+                <input type="radio" name="radio" value="2" id="styrke2">Stiv kuling
+                <input type="radio" name="radio" value="3" id="styrke3">Storm
+            </div>
+        </div>
+
+        <script>
+            var imgEl = document.querySelector("#img1");
+            var styrke1El = document.querySelector("#styrke1");
+            var styrke2El = document.querySelector("#styrke2");
+            var styrke3El = document.querySelector("#styrke3");
+            var styrke4El = document.querySelector("#styrke4");
+            
+            styrke1El.addEventListener("change", go);
+            styrke2El.addEventListener("change", go);
+            styrke3El.addEventListener("change", go);
+            styrke4El.addEventListener("change", go);
+
+            function go() {
+            if (styrke1El.checked) {
+                imgEl.className = "styrke1";
+            }
+                else if (styrke2El.checked) {
+                    imgEl.className = "styrke2";
+                }
+                    else if (styrke3El.checked) {
+                        imgEl.className = "styrke3";
+                    } 
+                        else {
+                            imgEl.className = "styrke4";
+                        }
+            }
+        </script>
+    </body>
+</html>

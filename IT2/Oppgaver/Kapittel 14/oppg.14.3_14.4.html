@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: #daad;
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="mittCanvas" width="500" height="300"></canvas>
+
+    </body>
+    <script>
+        
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+
+       function teiknTilfeldigeRektangel(tal) {
+           for (var i = 0; i < tal; i++) {
+               var xKoordinat = Math.random() * canvas.width;
+               var yKoordinat = Math.random() * canvas.height;
+
+               var breidd = Math.floor(Math.random() * 50) + 25;
+               var hogd = Math.floor(Math.random() * 50) + 25;
+
+               ctx.fillStyle = "hsl(" + i * 200 + ", 100%, 70%";
+               ctx.fillRect(xKoordinat, yKoordinat, breidd, hogd);
+
+               
+           }
+       }
+
+       teiknTilfeldigeRektangel(100);
+
+
+
+
+    </script>
+</html>

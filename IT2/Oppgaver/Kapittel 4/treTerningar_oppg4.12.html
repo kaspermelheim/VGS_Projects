@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function terning() {
+                return Math.floor((Math.random() * 3)) + 1;
+            }
+            
+                var likeTerningar = false;
+
+                while(!likeTerningar) {
+                    
+                    var terning1 = terning();
+                    var terning2 = terning();
+                    var terning3 = terning();
+
+                    console.log("Summen av terningane er " + (terning1 + terning2 + terning3) + ".");
+                
+                    if (terning1 === terning2 && terning1 === terning3) {
+                        likeTerningar = true;
+                        console.log("Fekk tre like der terningane viser " + terning1 + ". Summen av dei er " + (terning1 + terning2 + terning3) + ".")
+                    }
+                }
+            
+            
+
+        </script>
+    
+    </body>
+</html>

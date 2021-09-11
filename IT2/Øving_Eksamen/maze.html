@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Maze</title>
+        <link rel="stylesheet" type="text/css" href="maze.css"> 
+        <link rel="stylesheet" type="text/css" href="button.css">
+        <style>
+            body {
+                background-color: white;
+            }
+            #dot {
+                width: 15px;
+                height: 15px;
+                background-color: rgb(255, 0, 0);
+                position: absolute;
+                top: 38px;
+                left: 42px;
+            }
+
+            .dotClass {
+                animation: 12s goMaze linear;
+            }
+
+            @keyframes goMaze {
+                0% {top: 38px; left: 42px;}
+                5% { top: 601px; left: 42px;}
+                15% { left: 487px; top: 601px;}
+                22% {top: 160px; left: 487px;}
+                30% { top: 160px; left: 815px;}
+                33% { left: 815px; top: 20px;}
+                44% { left: 1135px; top: 20px;}
+                52% { left: 1135px; top: 135px;}
+                58% { left: 1035px; top: 135px;}
+                72% { left: 1035px; top: 585px;}
+                77% { left: 1235px; top: 585px;}
+                85% { left: 1235px; top: 20px;}
+                88% { left: 1331px; top: 20px;}
+                100% { left: 1331px; top: 290px;}
+            }
+            #knapp {
+                position: absolute;
+                top: 140px;
+                left: 30px;
+                border: none;
+            }
+            #knapp:hover {
+                background-color: rgb(3, 206, 3);
+            }
+            #paragraf {
+                color: white;
+                position: absolute;
+                font-family: sans-serif;
+                font-weight: bold;
+                left: 110px;
+                font-size: 14px;
+            }
+            #border img {
+                position: absolute;
+                width: 1350px;
+                height: 620px;
+            }
+            #border {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="borderdiv1"></div>
+        <div id="borderdiv2"></div>
+        <div id="borderdiv3"></div>
+        <div id="borderdiv4"></div2>
+        
+        <div class="base" id="div1">
+            <button id="knapp">Start</button>
+        </div>
+        <div class="base" id="div3"></div>
+        <div class="base" id="div4"></div>
+        <div class="base" id="div6"></div>
+        <div class="base" id="div7"></div>
+        <div class="base" id="div8"></div>
+        <div class="base" id="div9"></div>
+        <div class="base" id="div10"></div>
+        <div class="base" id="div11"></div>
+        <div class="base" id="div12"></div>
+        <div id="start"></div>
+        <div id="end"></div>
+
+        <div id="dot"></div>
+
+        <div id="paragraf">
+            <h1>The Maze Game!</h1>
+            <p>Welcome to The Maze Game, here you <br>can watch how the smart and swift computer <br>finishes the maze in only 12 seconds!<br>                Hit the "Start" button to watch it go!
+            </p>
+        </div>
+
+        <div id="border">
+            <img src="scary.jpg" alt="scary">
+            <audio id="audio">
+                <source src="scream.wav" type="audio/wav">
+            </audio>
+        </div>
+
+        <script>
+        
+            var knappEl = document.querySelector("#knapp");
+            var dotEl = document.querySelector("#dot");
+            var borderEl = document.querySelector("#border");
+            var audioEl = document.querySelector("#audio");
+            knappEl.addEventListener("click", drive);
+
+            function drive() {
+                dotEl.classList.add("dotClass");
+                setTimeout(remover, 12000);
+                /* setTimeout(scary, 11100); */
+               /* setTimeout(removeScary, 16000);*/
+            }
+            function remover() {
+                dotEl.classList.remove("dotClass");
+            }
+            function scary() {
+                borderEl.style.display = "block";
+                audioEl.play();
+            }
+            function removeScary() {
+                borderEl.style.display = "none";
+                audioEl.pause();
+                audioEl.currentTime = 0;
+            }
+
+
+        
+        </script>
+    
+    </body>
+</html>

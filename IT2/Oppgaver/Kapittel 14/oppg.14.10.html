@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: rgb(151, 250, 151);
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="mittCanvas" width="500" height="300"></canvas>
+
+    </body>
+    <script>
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.arc(250, 220, 70, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.lineStyle = "black";
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(250, 130, 60, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.lineStyle = "black";
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(250, 50, 40, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.lineStyle = "black";
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(255,35,5,0,Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath;
+
+        ctx.beginPath();
+        ctx.arc(275,35,5,0,Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath;
+
+        ctx.beginPath();
+        ctx.moveTo(270, 40);
+        ctx.lineTo(275, 60);
+        ctx.lineTo(260, 40);
+        ctx.closePath();
+        ctx.fillStyle = "orange";
+        ctx.fill();
+
+
+        
+
+
+
+
+    </script>
+</html>

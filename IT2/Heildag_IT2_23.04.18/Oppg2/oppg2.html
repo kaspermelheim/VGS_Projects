@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+  <title> Oppgave 2 </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="brukerinput.css">
+  <link rel="stylesheet" href="tabellstil.css">
+  <style>
+    body {
+      background-color: #afcfff;
+      font-family: "Century Gothic", Arial, sans-serif;
+      font-size: 14px;
+      color: #882c2c;
+    }
+    h1, h3 {
+      margin :auto;
+      text-align: center;
+    }
+   
+    h2 {
+        margin: auto;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .innpakning {
+      width: 50%;
+      margin: 10px auto;
+      padding: 5px;
+      background-color: rgb(176, 202, 212);
+      border: 1px solid black;
+    }
+    
+    #resultaterTabell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    #medaljer {
+      display: none;
+    }
+    #medaljer p {
+        text-align: center;
+    }
+    #visAlle {
+      display: none;
+      margin-top: 1000px;
+    }
+    
+  </style>
+</head>
+<body>
+
+<div class="innpakning">
+
+  <h1> Vinter OL </h1>
+
+  Skriv inn eit land
+  <input type="text" id="land">
+
+  <p id="sokmelding"></p>
+
+  <button id="sokknapp"> Søk </button>
+  <button id="alleLand"> Vis alle land </button>
+</div>
+
+<div class="innpakning" id="medaljer">
+  <h3 id="h3"></h3>
+  <div id="resultaterTabell"></div>
+  <h2 id="tittel">Resultater for landet: </h2>
+  <p id="p1"><strong>Gull:</strong></p>
+  <p id="p2"><strong>Sølv:</strong></p>
+  <p id="p3"><strong>Bronse:</strong></p>
+  <p id="p4"><strong>Totalt:</strong></p>
+
+</div>
+
+<script src="tabellfunksjon.js"></script>
+<script>
+// Hentar HTML-elementa
+var listeLandEl = document.querySelector("#land");
+var sokmeldingEl = document.querySelector("#sokmelding");
+var medaljerEl = document.querySelector("#medaljer")
+var resultaterTabellEl = document.querySelector("#resultaterTabell");
+var alleLandEl = document.querySelector("#alleLand");
+var tittelEl = document.querySelector("#tittel");
+var h3El = document.querySelector("#h3");
+
+var p1El = document.querySelector("#p1");
+var p2El = document.querySelector("#p2");
+var p3El = document.querySelector("#p3");
+var p4El = document.querySelector("#p4");
+
+var sokknappEl = document.querySelector("#sokknapp");
+
+// Legg til lyttarar
+sokknappEl.addEventListener("click", sjekkLand);
+alleLandEl.addEventListener("click", visAlle);
+
+// Liste over registrerte land
+var listeland = [
+  "Norge",
+  "Tyskland",
+  "Canada",
+  "USA",
+  "Nederland"
+];
+
+// Oversikt over landa og medaljar
+var landMedaljer = [
+  { land: "Norge", gull: 14, solv: 14, bronse: 11, totalt: 39 },
+  { land: "Tyskland", gull: 14, solv: 10, bronse: 7, totalt: 31 },
+  { land: "Canada", gull: 11, solv: 8, bronse: 10, totalt: 29 },
+  { land: "USA", gull: 9, solv: 8, bronse: 6, totalt: 23 },
+  { land: "Nederland", gull: 8, solv: 6, bronse: 6, totalt: 20 }
+];
+
+// Funksjon som behandlar søk
+function sjekkLand() {
+  // Hentar land
+  var rettLand = listeLandEl.value;
+
+  // Variabel som avgjer om søk er vellykka
+  var innlogga = false;
+
+  // Sjekkar om passordet eksisterar
+  for (var i = 0; i < listeland.length; i++) {
+    // Samenliknar landet med alle landa i arrayen
+    if (listeland[i] == rettLand) {
+      // Godkjenner søk dersom landet er godkjent
+      innlogga = true;
+
+      // Skriv melding til brukaren
+      sokmeldingEl.innerHTML = "Du søkte på: " + listeLandEl.value + ".";
+
+      // Gjer medaljevinduet synleg
+      medaljerEl.style.display = "block";
+
+      //Endrar tittel
+      tittelEl.innerHTML = "Resultater for " + listeLandEl.value + ":";
+
+    }
+}
+    /* If else kode som skriv ut informasjon om medaljar til kvart land. Veldig lite generisk kode men 
+    måtte gjere det sånn for å svare på oppgåva då eg ikkje hadde tid til eller fekk til å gjere den slik eg ønska, meir generisk. */
+
+    if (listeLandEl.value === "Norge") {
+        p1El.innerHTML = "Gull: " + landMedaljer[0].gull +".";
+        p2El.innerHTML = "Sølv: " + landMedaljer[0].solv +"."; 
+        p3El.innerHTML = "Bronse: " + landMedaljer[0].bronse +"."; 
+        p4El.innerHTML = "Totalt: " + landMedaljer[0].totalt +"."; 
+
+    } else if (listeLandEl.value === "Tyskland") {
+            p1El.innerHTML = "Gull: " + landMedaljer[1].gull +".";
+            p2El.innerHTML = "Sølv: " + landMedaljer[1].solv +"."; 
+            p3El.innerHTML = "Bronse: " + landMedaljer[1].bronse +"."; 
+            p4El.innerHTML = "Totalt: " + landMedaljer[1].totalt +"."; 
+
+     }  else if (listeLandEl.value === "Canada") {
+                p1El.innerHTML = "Gull: " + landMedaljer[2].gull +".";
+                p2El.innerHTML = "Sølv: " + landMedaljer[2].solv +"."; 
+                p3El.innerHTML = "Bronse: " + landMedaljer[2].bronse +"."; 
+                p4El.innerHTML = "Totalt: " + landMedaljer[2].totalt +"."; 
+
+      }   else if (listeLandEl.value === "USA") {
+                    p1El.innerHTML = "Gull: " + landMedaljer[3].gull +".";
+                    p2El.innerHTML = "Sølv: " + landMedaljer[3].solv +"."; 
+                    p3El.innerHTML = "Bronse: " + landMedaljer[3].bronse +"."; 
+                    p4El.innerHTML = "Totalt: " + landMedaljer[3].totalt +"."; 
+       }   else if (listeLandEl.value === "Nederland") {
+                        p1El.innerHTML = "Gull: " + landMedaljer[4].gull +".";
+                        p2El.innerHTML = "Sølv: " + landMedaljer[4].solv +"."; 
+                        p3El.innerHTML = "Bronse: " + landMedaljer[4].bronse +"."; 
+                        p4El.innerHTML = "Totalt: " + landMedaljer[4].totalt +"."; 
+       }
+
+  if (innlogga == false) {
+    // Søk ikkje godkjent - skriv melding til brukeren
+    sokmeldingEl.innerHTML = "Landet er ikkje i lista, prøv igjen.";
+  }
+}
+    // Funksjon for å vise liste med alle land, tenkte her at dersom det er ein stor applikasjon med ei liste med hundrevis av land,
+    // kan lista visast dersom ein vil sjå alle, men kan også søke for å raskt finne landet ein vil sjå resultata til.
+    function visAlle() {
+    var overskrifter = ["Land", "Gull", "Sølv", "Bronse", "Totalt"];
+
+        // Tømmer elementet der tabellen skal teiknast opp, slik
+        // at tidlegare tabellar vert fjerna
+        resultaterTabellEl.innerHTML = "";
+
+        h3El.innerHTML = "Resultat for alle landa:";
+
+    // Nyttar funksjonen lagTAbell(), som er i dokumentet tabellfunksjon.js,
+    // til å lage ein tabell med oversikt over landa og medaljane
+        lagTabell(resultaterTabellEl, overskrifter, landMedaljer);
+
+    // Gjer resultatelementet synleg
+    alleLandEl.style.display = "block";
+    
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+  <title>Animasjon</title>
+  <link rel="stylesheet" type="text/css" href="banner_animasjon_stil.css" />
+  <meta charset="UTF-8">
+  <style>
+     /* body {
+          background-image: url("skeleton.png");
+      } */
+    
+      #trumpet {
+          position: fixed;
+          left: 600px;
+          top: 300px;
+      }
+      #trumpet p {
+          color: red;
+          font-weight: bold;
+          font-family: sans-serif;
+          font-size: 45px;
+      }
+      #knapp {
+          width: 100px;
+          height: 50px;
+          background-color: purple;
+          border: none;
+          border-radius: 10px;
+      }
+      #knapp:hover {
+          background-color: rgb(212, 74, 212);
+      }
+      #knapp2 {
+          width: 100px;
+          height: 50px;
+          background-color: rgb(21, 117, 129);
+          border: none;
+          border-radius: 10px;
+      }
+      #knapp2:hover {
+          background-color: rgb(5, 55, 78);
+      }
+      #trump {
+          position: fixed;
+          left: 0px;
+          top: -90px;
+      }
+      .background {
+          background-image: url("skeleton2.png");
+      }
+  </style>
+</head>
+<body id="bodyID">
+
+        <!-- div-element med animasjon (kan visast og skjulast) -->
+        <div id="animasjon">
+            <div class="loper">
+                <img src="ship.png" alt="Ship">
+            </div>
+        </div>
+
+        <div id="animasjon2">
+            <div class="loper2">
+                <img src="skeleton.png">
+            </div>
+        </div>
+
+        <div id="trumpet">
+            <p id="p">trumpetlife!!111!</p>
+        </div>
+
+        <button id="knapp">Music</button>
+        <button id="knapp2">stop</button>
+
+        <audio id="audio">
+            <source src="doot.wav" type="audio/wav">
+          </audio>
+        
+        <div id="trump">
+            <img src="trump.png">
+        </div>
+        
+
+
+
+        <script>
+          
+            var loperEl = document.querySelector(".loper");
+            var loper2El = document.querySelector(".loper2");
+            var textEl = document.querySelector("#p");
+            var knappEl = document.querySelector("#knapp");
+            var audioEl = document.querySelector("#audio");
+            var knapp2El = document.querySelector("#knapp2");
+            var bodyEl = document.querySelector("#bodyID");
+            var trumpEl = document.querySelector("#trump");
+
+            knappEl.addEventListener("click", knappF);
+            knapp2El.addEventListener("click", knappF2)
+
+            document.getElementById("audio").loop = true;
+
+            function knappF() {
+                audioEl.play();
+                bodyEl.classList.remove("color");
+                bodyEl.classList.add("background");
+            }
+
+            function knappF2() {
+                document.getElementById("audio").loop = false;
+                bodyEl.classList.remove("background")
+                bodyEl.classList.add("color");
+            }
+          
+
+            // Funksjon for å flytte løper frå venstre til hoyre
+            function loperFunksjon() {
+                loperEl.classList.add("flyttHoyre");
+                loper2El.classList.add("flyttOpp");
+                textEl.classList.add("change");
+                bodyEl.classList.add("color");
+                trumpEl.classList.add("up");
+            }
+            
+            setTimeout(loperFunksjon, 0);
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: black;
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="mittCanvas" width="500" height="300"></canvas>
+
+    </body>
+    <script>
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+
+        function tilfeldigeStjernar(antall) {
+            for (var i = 0; i < antall; i++) {
+                var x = Math.floor(Math.random()* canvas.width);
+                var y = Math.floor(Math.random()* canvas.height);
+
+                var bredde = Math.floor(Math.random()*50)+25;
+
+        ctx.beginPath();
+        ctx.moveTo(x,y);
+        ctx.lineTo(x - bredde ,y+80);
+        ctx.lineTo(x + bredde ,y+30);
+        ctx.lineTo(x - bredde ,y+30);
+        ctx.lineTo(x + bredde ,y+80);
+        ctx.closePath();
+
+        ctx.fillStyle = "hsl(" + i * 200 + ", 100%, 70%)";
+        ctx.fill();
+            }
+        }
+
+        tilfeldigeStjernar(10);
+
+
+
+
+
+
+
+    </script>
+</html>

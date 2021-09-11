@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            var skrift = prompt("Skriv inn sirkel eller kvadrat.");
+            
+            if (skrift == "kvadrat") {
+                var lengd = prompt("Skriv inn sidelengd til kvadratet.");
+                alert("Arealet av kvadratet er " + ((Number(lengd))*(Number(lengd))) + " kvadratcentimeter.")
+            }
+                else if(skrift == "sirkel") {
+                    var radius = prompt("Skriv in radius til sirkelen.");
+                    alert("Arealet av sirkelen er " + ((Number(radius))*(Number(radius)))* 3.14 + " kvadratcentimeter.")
+                }
+                    else {
+                        alert("Du må skrive sirkel eller areal, andre ord funkar ikkje.")
+                    }
+        </script>
+    
+    </body>
+</html>

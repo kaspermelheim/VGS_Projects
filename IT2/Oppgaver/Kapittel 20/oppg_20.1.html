@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Klassar</title>
+        <style>
+                       
+        </style>
+    </head>
+    <body>
+        
+
+        <script>
+
+            "use strict"
+
+            class Rektangel {
+                constructor(lengd, breidd) {
+                    this.lengd = lengd;
+                    this.breidd = breidd;
+                }
+
+                omkrins() {
+                    var sum = (2*this.lengd) + (2*this.breidd);
+                    return sum;
+                }
+
+                areal() {
+                    var sum = this.lengd * this.breidd;
+                    return sum;
+                }
+            }
+
+            class Kvadrat extends Rektangel {
+                constructor(side) {
+                    super(side,side);
+                }
+            }
+
+            var kvadrat = new Kvadrat(6);
+
+            console.log("Kvadrat:");
+            console.log(kvadrat.areal());
+            console.log(kvadrat.omkrins());
+
+            var rektangel1 = new Rektangel("10", "20");
+            var rektangel2 = new Rektangel("3","4");
+
+            console.log("Rektangel1:");
+            console.log(rektangel1.omkrins());
+            console.log(rektangel1.areal());
+            
+            console.log("Rektangel2:");
+            console.log(rektangel2.omkrins());
+            console.log(rektangel2.areal()); 
+        
+        </script>
+    
+    </body>
+</html>

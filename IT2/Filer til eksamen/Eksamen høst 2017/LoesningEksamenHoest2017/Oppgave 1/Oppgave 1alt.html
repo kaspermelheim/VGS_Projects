@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+  <title>Oppgave 1alt</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: #323232;
+      font-family: "Century Gothic", Arial, sans-serif;
+      font-size: 14px;
+      color: #323232;
+    }
+    h1 {
+      width: 500px;
+     /* padding: 10px;
+      margin: 20px auto; */
+      margin:auto;
+      text-align: center;
+      background-color: #cce6ed;
+    }
+    .innpakning {
+      width: 500px;
+      height:211px;
+      /* padding: 1px; */
+      font-size: 0;
+      background-image: url("./img/partiplakat.png"); /* angir eit bakgrunnsbilde */
+      position: relative; /* posisjonerar innpakninga */
+      margin: 10px auto;
+    }
+    .knapp {
+        width: 92px;
+        height: 92px;
+        border-radius: 10%; /* verdien 50 % gjør elementene heilt runde */
+        position: absolute; /* absoluttposisjonerer alle "knappane" */
+      }
+      .sp {
+        top: 100px;
+        right: 200px;
+      }
+      .mdg {
+        top: 10px;
+        right: 8px;	
+      }
+      .h {
+        top: 10px;
+        right: 200px;
+      }
+     
+      .knapp:hover {
+        border: solid 4px blue;
+        cursor: pointer;
+        background-color: blue;
+        opacity: 0.3;
+      }
+    #spvideo {
+      width: 320px;
+      margin: 30px auto;
+      display: none;
+    }
+    #melding {
+      width: 320px;
+      margin: 30px auto;
+      display: none;
+      border: 2px solid black;
+      background-color: white;
+    }
+    #lukksp {
+      cursor: pointer;
+      text-align: center;
+      margin: 0;
+      padding: 2px;
+      background-color: rgba(200, 200, 200, 0.5);
+    }
+    #bildekarusell {
+      width: 320px;
+      height: 240px;
+      margin: 30px auto;
+      animation: bildekarusell 6s infinite;
+      display: none;
+    }
+    #lukkmdg {
+      cursor: pointer;
+      text-align: center;
+      padding: 2px;
+      margin: 0;
+      background-color: rgba(200, 200, 200, 0.5);
+    }
+    #lukkh {
+      cursor: pointer;
+      text-align: center;
+      padding: 2px;
+      background-color: rgba(200, 200, 200, 0.5);
+    }
+    @keyframes bildekarusell {
+        0% { background-image: url("bildekarusell/bildegalleri01.jpg"); }
+       33% { background-image: url("bildekarusell/bildegalleri02.jpg"); }
+       66% { background-image: url("bildekarusell/bildegalleri03.jpg"); }
+      100% { background-image: url("bildekarusell/bildegalleri01.jpg"); }
+    }
+    #p1 {
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: black;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- overskrift -->
+  <h1> Lær meir om partia </h1>
+  <!-- div-element med partilogoane -->
+  <div class="innpakning">
+    <div class="knapp sp"></div>
+    <div class="knapp mdg"></div>
+    <div class="knapp h"></div>
+  </div>
+
+  <!-- div-element med bildekarusellen for mdg (kan visast og skjulast) -->
+  <div id="bildekarusell">
+    <p id="lukkmdg"> Lukk vindu </p>
+
+    <audio id="piano" loop>
+      <source src="./bildekarusell/piano.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div id="melding">
+    <p id="lukkh">Lukk vindu</p>
+    <p id="p1">Informasjon er under utbygging. Informasjon er under utbygging. Informasjon er under utbygging.
+        Informasjon er under utbygging.Informasjon er under utbygging.Informasjon er under utbygging.
+    </p>
+  </div>
+
+  <!-- div-element med sp-videoen (kan visast og skjulast) -->
+  <div id="spvideo">
+    <p id="lukksp"> Lukk vindu </p>
+
+    <video id="spvideofil" controls>
+      <source src="senterpartiet_redigert.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <script>
+  // Hentar element
+  var lukkmdgEl = document.querySelector("#lukkmdg");
+  var pianoEl = document.querySelector("#piano");
+  var bildekarusellEl = document.querySelector("#bildekarusell");
+  var lukkspEl = document.querySelector("#lukksp");
+  var spvideoEl = document.querySelector("#spvideo");
+  var spvideofilEl = document.querySelector("#spvideofil");
+  var meldingEl = document.querySelector("#melding");
+  var lukkhEl = document.querySelector("#lukkh");
+
+  // Hentar alle knappar inn i ein Array vha querySelectorAll
+  var knapperEl = document.querySelectorAll(".knapp");
+
+  // Legg til lyttarar på "knappane" 
+for (var i = 0; i < knapperEl.length; i++) {
+  knapperEl[i].addEventListener("click", sjekkSvar);
+}
+
+// Funksjonen sjekkSvar() kjøres når en knapp trykkes
+function sjekkSvar(e) {
+   // Sjekker kva "knapp" som er trykt ved å sjekke klassenamnet til elementet.
+  if (e.target.className === "knapp sp") {
+    spvideoEl.style.display = "block";
+    spvideofilEl.play();
+  } else if (e.target.className === "knapp mdg") {
+    bildekarusellEl.style.display = "block";
+    pianoEl.play();
+    } else {
+      meldingEl.style.display = "block";
+    }
+   // Slutt else
+} // Slutt sjekkSvar
+
+  // Legg til lyttarar på knappane som stenger vindauga
+  lukkmdgEl.addEventListener("click", lukkmdg);
+  lukkspEl.addEventListener("click", lukksp);
+  lukkhEl.addEventListener("click", lukkh);
+
+  // Funksjon som skjuler div-elementet med bildekarusellen
+  // (og som stoppar pianomusikken)
+  function lukkmdg() {
+    bildekarusellEl.style.display = "none";
+    pianoEl.pause();
+  } // Slutt funksjon lukkmdg
+
+  // Funksjon som skjuler div-elementet med sp-videoen
+  // (og som stoppar avspeling av filmen)
+  function lukksp() {
+    spvideoEl.style.display = "none";
+    spvideofilEl.pause();
+  } // Slutt funksjon lukksp
+
+  function lukkh() {
+    meldingEl.style.display = "none";
+  }
+  </script>
+</body>
+</html>

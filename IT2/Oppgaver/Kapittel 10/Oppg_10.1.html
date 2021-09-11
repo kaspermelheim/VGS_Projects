@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="brukarinput.css">
+    </head>
+    <body>
+        <div class="innpakning">
+
+        <h1>Hotell</h1>
+     
+
+        Namn:
+        <input type="text" placeholder="Ditt namn"><br>
+
+        Telefon: 
+        <input type="number" placeholder="Ditt telefonnr."><br>
+
+        Anntall personer:
+        <select name="anntall"><br>
+            <option id="ein1" value="ein">1</option>
+            <option id="to2" value="to">2</option>
+            <option id="tre3" value="tre">3</option>
+            <option id="fire4" value="fire">4</option>
+            
+            
+        </select><br>
+
+        Frukost (200kr):<br>
+        <input type="radio" name="frukost" value="ja" id="frukostJa">Ja<br>
+        <input type="radio" name="frukost" value="nei" id="frukostNei" checked>Nei<br>
+        <br>
+
+        <p>Ønska aktivitetar:</p>
+        <input id="aktivitet1" type="radio" name="format" value="300">Dagspass til Bø Sommarland (300kr)<br>
+        <input id="aktivitet2" type="radio" name="format" value="250">Dagspass til Høgt og Lågt klatrepark (250kr)<br>
+        <input id="aktivitet3" type="radio" name="format" value="200">Omvising på fruktgard (200kr)<br>
+        <input id="aktivitet4" type="radio" name="format" value="800">Dagstur på Telemarkskanalen (800kr)<br>
+        <input id="aktivitet5" type="radio" name="format" value="0">Ingen<br><br>
+
+        <button id="prisKnapp">Vis pris</button>
+        <button class="ok">Godkjenn</button>
+        <a href="#"><button class="avbryt">Avbryt</button></a>
+
+        <p id="pris">Pris:</p>
+       
+
+        </div>
+        
+
+            <script>
+
+                var sum = 0;
+
+                var boSommarland = 300;
+                var hogtLagt = 250;
+                var fruktGard = 200;
+                var teleMark = 800;
+            
+                var person1El = document.querySelector("#ein1");
+                var person2El = document.querySelector("#to2");
+                var person3El = document.querySelector("#tre3");
+                var person4El = document.querySelector("#fire4");
+
+                var aktivitet1El = document.querySelector("#aktivitet1");
+                var aktivitet2El = document.querySelector("#aktivitet2");
+                var aktivitet3El = document.querySelector("#aktivitet3");
+                var aktivitet4El = document.querySelector("#aktivitet4");
+                var aktivitet5El = document.querySelector("#aktivitet5");
+
+                var frukostJaEl = document.querySelector("#frukostJa");
+                var frukostNeiEl = document.querySelector("#frukostNei");
+                var prisEl = document.querySelector("#pris");
+                
+
+                var prisKnappEl = addEventListener("click", reknUt);
+
+                function reknUt() {
+
+                if (frukostJaEl.checked) {
+                    var sum = 200;
+                }
+                    else if (frukostNeiEl.checked) {
+                        var sum = 0;  
+                    }
+                    if (aktivitet1El.checked) {
+                            var sum2 = boSommarland;
+                        }
+                            else if (aktivitet2El.checked) {
+                                var sum2 = hogtLagt;
+                            }
+                                else if (aktivitet3El.checked) {
+                                    var sum2 = fruktGard;
+                                }
+                                    else if (aktivitet4El.checked) {
+                                        var sum2 = teleMark;
+                                    }
+                                        else if (aktivitet5El.checked) {
+                                            var sum2 = 0;
+                                        }
+
+                    if (person1El.selected) {
+                    var sum1 = (sum * 1);
+                    var sum2 = (sum2 *1);
+                    prisEl.innerHTML="Pris: " + (sum1 + sum2) + "kr";
+                }
+                    else if (person2El.selected) {
+                        var sum1 = (sum * 2);
+                        var sum2 = (sum2 *2);
+                        prisEl.innerHTML="Pris: " + (sum1 + sum2) + "kr";
+                    }
+                        else if (person3El.selected) {
+                            var sum1 = (sum * 3);
+                            var sum2 = (sum2 *3);
+                            prisEl.innerHTML="Pris: " + (sum1 + sum2) + "kr";
+                        }
+                            else if (person4El.selected) {
+                                var sum1 = (sum * 4);
+                                var sum2 = (sum2 *4);
+                                prisEl.innerHTML="Pris: " + (sum1 + sum2) + "kr";
+                            }  
+                        
+                }
+
+            
+
+                
+                
+            
+            
+            </script>
+
+    </body>
+</html>

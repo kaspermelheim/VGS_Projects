@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+  <title>Oppgave 1</title>
+  <link rel="stylesheet" type="text/css" href="oppg1_stil.css" />
+  <meta charset="UTF-8">
+</head>
+<body>
+        <h1>Vinter OL - Øvelsar</h1>
+        <h2>Klikk på ein av øvelsane og sjå kva som skjer!</h2>
+
+        <!-- Kode for dei 2 knappane med ulike posisjonar -->
+        <div class="innpakning">
+                <div class="knapp skihopp"></div>
+                <div class="knapp skoyte"></div>
+        </div>
+        
+        <p id="p1"></p>
+
+        <!-- div-element med animasjon (kan visast og skjulast) -->
+        <div id="animasjon">
+            <p id="lukkanimasjon"> Lukk vindu </p>
+
+            <div class="loper">
+                <img src="./bilder/skoyteloper.jpg" alt="Skøyteløper">
+            </div>
+            <audio id="skoytelyd">
+            <source src="skoytelyd_redigert.wav" type="audio/wav">
+            </audio>
+        </div>
+        
+        <!-- div-element med video (kan visast og skjulast) -->
+        <div id="hoppvideo">
+            <p id="lukkvideo"> Lukk vindu </p>
+        
+            <video id="videofil" controls>
+              <source src="hoppklipp_redigert.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div id="fixed">
+              <p>Made by: Kasper Melheim, <br> Lead Software Engineer</p>
+          </div>
+
+
+
+        <script>
+            // Hentar element
+            var meldingEl = document.querySelector("#p1");
+            var lukkvideoEl = document.querySelector("#lukkvideo");
+            var hoppvideoEl = document.querySelector("#hoppvideo");
+            var videofilEl = document.querySelector("#videofil");
+            var lukkanimasjonEl = document.querySelector("#lukkanimasjon");
+            var skoytelydEl = document.querySelector("#skoytelyd");
+            var animasjonEl = document.querySelector("#animasjon");
+            var loperEl = document.querySelector(".loper");
+          
+
+            // Hentar alle knappar inn i ein Array via querySelectorAll
+            var knapperEl = document.querySelectorAll(".knapp");
+
+            // Legg til lyttarar på knappane som stenger vindauga
+            lukkvideoEl.addEventListener("click", lukkvideo);
+            lukkanimasjonEl.addEventListener("click", lukkanimasjon);
+
+            // Funksjon for å flytte løper frå venstre til hoyre
+            function loperFunksjon() {
+                loperEl.classList.remove("flyttVenstre");
+                loperEl.classList.add("flyttHoyre");
+            }
+            // Funksjon for å flytte loper frå hoyre til venstre
+            function loperFunksjon2() {
+                loperEl.classList.remove("flyttHoyre");
+                loperEl.classList.add("flyttVenstre");
+            }
+
+            // Legg til lyttarar på "knappane" 
+            for (var i = 0; i < knapperEl.length; i++) {
+            knapperEl[i].addEventListener("click", sjekkSvar);
+            }
+
+            // Funksjon som viser div-elementet med hoppvideoen
+            // (og som starter avspilling av filmen)
+            function visvideo() {
+                hoppvideoEl.style.display = "block";
+                videofilEl.play();
+            }
+
+            /* Funksjon som syner div-elementet med animasjon
+                (og som startar skoytelyd) */
+
+            function visanimasjon() {
+                animasjonEl.style.display = "block";
+                skoytelydEl.play();
+            }
+
+            // Funksjon som skjuler div-elementet med hoppvideoen
+            // (og som stopper avspilling av filmen)
+            function lukkvideo() {
+                hoppvideoEl.style.display = "none";
+                videofilEl.pause();
+            }
+            // Funksjon som skjuler div-elementet med animasjonen
+            // (og som stoppar skoytelyd)
+            function lukkanimasjon() {
+                animasjonEl.style.display = "none";
+                skoytelydEl.pause();
+            }
+
+            // Funksjonen sjekkSvar() kjøres når en knapp trykkes
+            function sjekkSvar(e) {
+            // Sjekker kva "knapp" som er trykt ved å sjekke klassenamnet til elementet.
+            if (e.target.className === "knapp skihopp") {
+                visvideo();
+
+            } else {
+                visanimasjon();
+                // Timeout element som set igang animasjonen
+                setTimeout(loperFunksjon, 1);
+                setTimeout(loperFunksjon2, 1600);
+                } 
+            
+            // Slutt else
+            } // Slutt sjekkSvar
+
+        </script>
+</body>
+</html>

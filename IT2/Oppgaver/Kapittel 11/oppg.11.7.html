@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        
+        <script>
+
+            var tal = [2, 10, 45, 23];
+
+            function gjennomsnitt(talArray) {
+                var sum = 0;
+
+                for (var i = 0; i < talArray.length; i++) {
+                    var gjennomsnitt = ((sum += talArray[i])/tal.length);
+                }
+
+                return gjennomsnitt;
+            } 
+
+            console.log(gjennomsnitt(tal));
+               
+
+        </script>
+
+    </body>
+</html>

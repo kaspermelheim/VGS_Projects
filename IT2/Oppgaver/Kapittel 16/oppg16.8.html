@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman</title>
+        <style>
+            body {
+                background-color: #323232;
+                cursor: none;
+                overflow: hidden;
+            }
+            div {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div><div id="main"></div></div>
+        
+
+        <script>
+             
+             var bodyEl = document.querySelector("body");
+             var boksEl = document.querySelector("div");
+
+             bodyEl.addEventListener("keydown", flyttBoks);
+
+             var venstre = 0;
+             var topp = 0;
+             var hogre = 0;
+             var bunn = 0;
+             var fart = 20;
+
+
+             function flyttBoks(e) {
+                 if (e.keyCode === 37) {
+                     venstre -= fart;
+                     boksEl.style.backgroundColor = "red";
+                 } else if (e.keyCode === 39) {
+                     venstre += fart;
+                     boksEl.style.backgroundColor = "blue";
+                    } else if (e.keyCode === 38) {
+                        topp -= fart;
+                        boksEl.style.backgroundColor = "green";
+                        } else if (e.keyCode === 40) {
+                            topp += fart;
+                            boksEl.style.backgroundColor = "yellow";
+                        }
+
+                        if (topp < 0) { topp = 0 }
+                        if (topp > window.innerHeight) { topp = window.innerHeight; }
+                        if (venstre < 0) { venstre = 0; }
+                        if (venstre > window.innerWidth) { venstre = window.innerWidth; }
+
+                        if (venstre > (window.innerWidth / 2)) {
+                            bodyEl.style.backgroundColor = "hsl(160, 30%, 50%)";
+                            } else {
+                                bodyEl.style.backgroundColor = "hsl(260, 30%, 50%)";
+                                }
+                        
+
+                
+                boksEl.style.top = topp + "px";
+                boksEl.style.left = venstre + "px";
+                /*boksEl.style.backgroundColor = "hsl(" + venstre + "," + topp + "%, 50%";*/
+                
+             }
+             
+        
+        </script>
+    
+    </body>
+</html>

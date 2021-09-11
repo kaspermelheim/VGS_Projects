@@ -1,0 +1,104 @@
+body {
+    background-color: rgb(223, 227, 233);
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 14px;
+    color: #323232;
+  }
+  .innpakning {
+    width: 500px;
+    height:524px;
+    font-size: 10px;
+    background-image: url("./bilder/ovelser.jpg"); 
+    position: relative; 
+    margin: 10px auto;
+    border: 1px solid black;
+  }
+  h1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+  }
+  .knapp {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; 
+      position: absolute; 
+      
+    }
+
+    /* Kode for dei ulike plasseringane av knappane */
+    .skihopp { top: 210px; right: 80px; }
+    .skoyte { top: 40px; right: 190px; }
+   
+   /* Hover effekt på knappane */
+    .knapp:hover {
+      border: solid 4px rgb(209, 45, 45);
+      cursor: pointer;
+      background-color: rgb(209, 45, 45);
+      opacity: 0.3;
+      
+    }
+    #p1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 25px;
+      color: black;
+      font-weight: bold;
+    }
+    #hoppvideo {
+    width: 854px;
+    margin: 30px auto;
+    display: none;
+    border: 1px solid black;
+  }
+  #lukkvideo {
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 2px;
+    background-color: rgba(238, 87, 87, 0.5);
+  }
+  #lukkanimasjon {
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+    padding: 2px;
+    background-color: rgba(238, 87, 87, 0.5);
+  }
+  #animasjon {
+    width: 854px;
+    height: 270px;
+    margin: 30px auto;
+    animation: bildekarusell 6s infinite;
+    display: none;
+    border: 1px solid black;
+    background-color: white;
+  }
+  #fixed {
+      right: 0px;
+      bottom: 0px;
+      position: fixed;
+  }
+  #fixed p {
+      font-size: 12px;
+      color: black;
+  }
+  .loper {
+              height: 272px;
+              width: 240px;
+              -webkit-transition: all 1.6s;
+              transition: all 1.6s;
+
+          }
+          .flyttHoyre {
+              margin-left: 554px;
+          }
+          .flyttVenstre {
+              margin-left: 5px;
+          }

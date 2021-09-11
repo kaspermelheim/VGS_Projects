@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sprettball</title>
+        <style>
+
+            canvas {
+                display: block;
+                margin: 0 auto;
+                background-color: lightblue;
+            }        
+        </style>
+    </head>
+    <body>
+
+        <canvas width="600" height="300" id="mittCanvas"></canvas>
+
+        <audio id="riktig">
+                <source src="Riktig.wav" type="audio/wav">
+        </audio>
+        
+
+        <script>
+
+            "use strict"
+
+            var canvas = document.querySelector("#mittCanvas");
+            var ctx = canvas.getContext("2d");
+
+            /* var riktigEl = document.querySelector("#riktig"); */
+
+            class Ball {
+                constructor (x, y, r, xFart, yFart) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = r;
+                    this.xFart = xFart;
+                    this.yFart = yFart;
+                }
+
+               /* function finnAvstand(ball1, ball2) {
+                    var xAvstand2 = Math.pow(ball1.x - ball2.x, 2);
+                    var yAvstand2 = Math.pow(ball1.y - ball2.y, 2);
+                    var avstand = Math.sqrt(xAvstand2 + yAvstand2);
+                    return avstand;
+                } */
+
+                tegn() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 5;
+                    ctx.stroke();
+                    ctx.fillStyle = "orange";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+
+                flytt() {
+                    this.x += this.xFart;
+
+                    if (this.x-this.radius < 0 || this.x+this.radius > canvas.width) {
+                        this.xFart = -this.xFart;
+                        /* riktigEl.play(); */
+                    }
+                    this.y += this.yFart;
+
+                    if (this.y-this.radius < 0 || this.y+this.radius > canvas.height) {
+                        this.yFart = -this.yFart;
+                }
+            }
+        }
+
+                // Array for å holde på “ballene”
+                var baller = [];
+                // Antall baller
+
+                var antallBaller = 10;
+                // Lager ballene
+
+                for (var i = 0; i < antallBaller; i++) {
+                var xPos = Math.floor(Math.random() * canvas.width);
+                var yPos = Math.floor(Math.random() * canvas.height);
+                var randomradius = Math.floor(Math.random() * 20);
+                var ball = new Ball(xPos, yPos, randomradius, 5, 5);
+                baller.push(ball);
+                } 
+
+
+                function finnAvstand(ball1, ball2
+                ) {
+                    var xAvstand2 = Math.pow(ball1.x - ball2.x, 2);
+                    var yAvstand2 = Math.pow(ball1.y - ball2.y, 2);
+                    var avstand = Math.sqrt(xAvstand2 + yAvstand2);
+                    return avstand;
+                } 
+
+                function animer() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                   /* if (finnAvstand(ball1, ball2) < (ball1.radius + ball2.radius)) {
+                        console.log("Kollisjon");
+                        } */
+
+                    // Flytter ballene
+                    for (var i = 0; i < baller.length; i++) {
+                    baller[i].flytt();
+                    }
+
+                    // Tegner ballene
+                    for (var i = 0; i < baller.length; i++) {
+                    baller[i].tegn();
+                    } 
+                                        
+                    requestAnimationFrame(animer);
+                }
+
+                requestAnimationFrame(animer);
+
+            
+        </script>
+    
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+        <style>
+        .klasse1 {
+            background-color: red;
+        }
+        .klasse2 {
+            background-color: green;
+        }
+        .klasse3 {
+            background-color: blue;
+        }
+        .klasse4 {
+            background-color: yellow;
+        }
+        </style>
+    </head>
+    <body>
+        
+        <h1 id="heading">Trykk på meg</h1>
+        <h1>Trykk på meg</h1>
+
+        <script>
+            var headingEl = document.querySelector("#heading")
+            headingEl.addEventListener("click", nyheading);
+
+            function nyheading() {
+                headingEl.innerHTML = "Hyggelig at du klikket på meg!"
+            }
+        </script>
+    
+    </body>
+</html>

@@ -1,0 +1,131 @@
+tr:nth-child (odd) {
+    background-color: lightgoldenrodyellow;
+}
+th {
+    background-color: red;
+    color:white;
+}
+div:nth-child (odd) {
+    background-color: blue;
+}
+
+tr:hover{
+    background-color: yellow;
+    font-style:oblique;
+    color:red;
+}
+div#resultat {
+    border: 8px solid red;
+    margin: 15px;
+    padding: 20px;
+    background-color: lightblue;
+    width: 23%;
+}
+h1 {
+    font-family: serif;
+    font-size: 25px;
+    color: black;
+}
+div#div1 {
+     border: 2px solid black;
+    margin: 15px;
+    padding: 23px;
+    background-color: grey;
+    width: 23%;
+}
+#boxtext {
+    font-family: serif;
+    font-size: 40px;
+    color: blue;
+    width: 23%;
+}
+h2 {
+    font-family: serif;
+    font-size: 25px;
+    color: red;
+}
+
+h3 {
+    font-family: serif;
+    font-size: 15px;
+}
+body {
+    background-image: url(background.jpg)
+}
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+div.kinesiskemur {
+    position: absolute;
+    left: 605px;
+    border: solid 2px black;
+}
+div.panorama {
+    position: absolute;
+    left: 390px;
+    top: 515px;
+    border: solid 2px black;
+}
+div.flag {
+    position: absolute;
+    left: 390px;
+    top: 15px;
+    border: solid 2px black;
+}
+div.rainbow {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-size: 60px;
+}
+div.panoramabilder {
+    border: solid 2px black;
+}
+div.panoramabilder2 {
+    border: solid 2px black;
+    margin: 3px;
+}
+div.panoramabilder3 {
+    border: solid 2px black;
+}
+#clockbox {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: black;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    border: solid 3px black;
+    font-style: italic; 
+    padding: 2px;
+    background-color: lawngreen;
+}
+#copyright {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    border: solid 3px black;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: black;
+    background-color: lawngreen;
+}

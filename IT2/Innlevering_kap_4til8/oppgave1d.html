@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+        <style>
+        .klasse1 {
+            background-color: red;
+        }
+        .klasse2 {
+            background-color: green;
+        }
+        .klasse3 {
+            background-color: blue;
+        }
+        .klasse4 {
+            background-color: yellow;
+        }
+        </style>
+    </head>
+    <body>
+        
+        <h1 id="heading">Trykk på meg</h1>
+        <h1 id="trykk">Trykk på meg</h1>
+
+        <script>
+
+            var headingEl = document.querySelector("#heading");
+        
+
+            var trykkEl = document.querySelector("#trykk");
+            trykkEl.addEventListener("click", nyKlasse);
+
+            function nyKlasse() {
+                if (headingEl.className == "klasse4") {
+                    headingEl.innerHTML = "Nå er det nok!";
+                } 
+                    else if (headingEl.className == "klasse3") {
+                        headingEl.className = "klasse4";
+                    }
+                        else if (headingEl.className == "klasse2") {
+                        headingEl.className = "klasse3";
+                        }
+                            else if (headingEl.className == "klasse1") {
+                            headingEl.className = "klasse2";
+                            }
+                                else {
+                                headingEl.className ="klasse1";
+                                }
+                }
+
+
+        </script>
+    
+    </body>
+</html>

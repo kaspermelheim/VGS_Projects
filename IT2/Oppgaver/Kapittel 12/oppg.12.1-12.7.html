@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <script>
+
+            var meg = {
+                namn: "Kasper",
+                etternamn: "Melheim",
+                fodselsaar: "12.10.99",
+                favorittfilm: "Hobbiten",
+                favorittal: "7",
+                favorittMat: ["Taco", "Hamburger", "Lasagne"],
+
+                kvaSkalEgHaTilMiddag: function () {
+                    return this.favorittMat[Math.floor(Math.random() * 3)];
+                    
+                    /* var tilfeldig = Math.floor(Math.random() * 3) + 1;
+
+                    if (tilfeldig === 1) {
+                    return this.favorittMat[0];
+                }
+                        else if (tilfeldig === 2) {
+                            return this.favorittMat[1];
+                        }
+                            else if (tilfeldig === 3) {
+                                return this.favorittMat[2];
+                            }
+                            */
+                }
+                
+            }
+
+            console.log(meg.kvaSkalEgHaTilMiddag());
+
+            
+
+            
+
+           
+
+        </script>
+
+    </body>
+</html>

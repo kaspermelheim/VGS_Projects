@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bildekarusell</title>
+        <style>
+
+            body {
+                background-color: #e0e0e0;
+            }
+            #bildekarusell {
+                width: 600px;
+                height: 300px;
+                position: relative;
+                margin: 0px auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                overflow: hidden;
+                border: 2px solid rgb(66, 56, 56);
+            }
+            #bildekarusell2 {
+                width: 600px;
+                height: 300px;
+                position: relative;
+                margin: 0px auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                overflow: hidden;
+                border: 2px solid rgb(66, 56, 56);
+            }
+            .bilde {
+                width: 600px;
+                height: 300px;
+                position: absolute;
+                left: 0px;
+            }
+            .bilde2 {
+                width: 600px;
+                height: 300px;
+                position: absolute;
+                left: 0px;
+            }
+            @keyframes innFraHoyre {
+                from { left: 600px; }
+                to { left: 0px; }
+            }
+            @keyframes utTilVenstre {
+                from { left: 0px; }
+                to { left: -600px; }
+            }      
+            h1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgb(66, 56, 56);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h2 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgb(66, 56, 56);
+                font-family: Arial, Helvetica, sans-serif;
+                color:rgb(28, 148, 28);
+            }
+            #fiksert {
+                position: fixed;
+                right: 20px;
+                bottom: 1px;
+            }
+        </style>
+    </head>
+    <body>
+                 <h1>Bildekarusell</h1>
+        <h2>Natur:</h2>
+        <div id="bildekarusell">
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+        </div>
+
+        <h2>Dyr:</h2>
+        <div id="bildekarusell2">
+            <div class="bilde2"></div>
+            <div class="bilde2"></div>
+            <div class="bilde2"></div>
+            <div class="bilde2"></div>
+        </div>
+
+        <div id="fiksert">
+            <p>CR: Kasper Melheim</p>
+        </div>
+
+        
+        <script>
+       
+        var indeksSynligBilde = 0;
+        var indeksNesteBilde;
+        var tid = 3500;
+
+        var indeksSynligBilde2 = 0;
+        var indeksNesteBilde2;
+        var tid2 = 3500;
+
+        // Ein array med alle bildefilene vi ønsker å vise fram
+        var bildefiler = ["bilde1.png", "bilde2.png", "bilde3.png", "bilde4.png"];
+        var bildefiler2 = ["bilde5.png", "bilde6.png", "bilde7.png", "bilde8.png"];
+
+        //Henter alle elementer med klassen .bilde
+        var bilder = document.querySelectorAll(".bilde");
+        var bilder2 = document.querySelectorAll(".bilde2");
+
+        //Legger til bakgrunnsbildene,
+        //og setter display: none på alle bortsett fra første bilde
+        for (var i = 0; i < bilder.length; i++) {
+            bilder[i].style.backgroundImage = "url(bilder/" + bildefiler[i] + ")";
+
+            //Hvis bildet ikke er det første bildet (med indeks 0)
+            if (i != 0) {
+                bilder[i].style.display = "none";
+            }
+        }
+        setTimeout(flytt, tid);
+
+        function flytt() {
+            if (indeksSynligBilde === bilder.length - 1) {
+                indeksNesteBilde = 0;
+            }   else {
+                indeksNesteBilde = indeksSynligBilde + 1;
+            }
+
+            //Bildet settes inn til høyre for nåvørende bilde, 
+            //og animeres inn
+            bilder[indeksNesteBilde].style.left = "800px";
+            bilder[indeksNesteBilde].style.display = "initial";
+            bilder[indeksNesteBilde].style.animation = "innFraHoyre 2s forwards";
+
+            //Eksisterende bilde animeres ut til venstre
+            bilder[indeksSynligBilde].style.animation = "utTilVenstre 2s forwards";
+            
+            indeksSynligBilde = indeksNesteBilde;
+
+            setTimeout(flytt, tid);
+
+        }
+
+
+        //Legger til bakgrunnsbildene,
+        //og setter display: none på alle bortsett fra første bilde
+        for (var j = 0; j < bilder2.length; j++) {
+            bilder2[j].style.backgroundImage = "url(bilder/" + bildefiler2[j] + ")";
+
+            //Hvis bildet ikke er det første bildet (med indeks 0)
+            if (j != 0) {
+                bilder2[j].style.display = "none";
+            }
+        }
+        setTimeout(flytt2, tid);
+
+        function flytt2() {
+            if (indeksSynligBilde2 === bilder2.length - 1) {
+                indeksNesteBilde2 = 0;
+            }   else {
+                indeksNesteBilde2 = indeksSynligBilde2 + 1;
+            }
+
+            //Bildet settes inn til høyre for nåvørende bilde, 
+            //og animeres inn
+            bilder2[indeksNesteBilde2].style.left = "800px";
+            bilder2[indeksNesteBilde2].style.display = "initial";
+            bilder2[indeksNesteBilde2].style.animation = "innFraHoyre 2s forwards";
+
+            //Eksisterende bilde animeres ut til venstre
+            bilder2[indeksSynligBilde2].style.animation = "utTilVenstre 2s forwards";
+            
+            indeksSynligBilde2 = indeksNesteBilde2;
+
+            setTimeout(flytt2, tid);
+
+        }
+        
+        
+        </script>
+        
+    
+    
+    </body>
+</html>

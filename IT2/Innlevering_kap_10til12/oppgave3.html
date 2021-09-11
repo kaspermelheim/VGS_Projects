@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Oppgave 3 - Fødselstal</title>
+        <script src="tabell.js"></script>
+        <style>
+            body {
+                width: 50%;
+                background-color: #e0e0e0;
+                margin: auto;
+                font-family: "Century Gothic", Arial, sans-serif;
+                font-size: 14px; color: #323232;
+            }
+            #fodeStat {
+                width: 100%;
+                margin: auto;
+                padding: 5px;
+            }
+            table {
+                border-collapse: collapse;
+                border: 1px solid #cbcbcb;
+            }
+            tr {
+                background-color: #fefefe;
+            }
+            td, th {
+                padding: 15px;
+                border-right: 1px solid #cbcbcb;
+            }
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(1) {
+                background-color: #cddcec;
+            }
+        
+</style>
+    </head>
+    <body>
+        <header>
+            <h1>Oversikt over fødselstal</h1>
+        </header>
+        <div id="fodeStat"></div>
+        <footer>
+            <h3>Året med flest fødde var <span id="minst"></span>. </h3>
+            <h3>Året med minst fødde var <span id="flest"></span>. </h3>
+            <h3>Det var tilsaman født <span id="totalt"></span> i perioden </h3>
+        </footer>
+        <script>
+
+            var fodeTabell = [
+                { year: 2010, boys: 31461, girls: 29981},
+                { year: 2011, boys: 31006, girls: 29214},
+                { year: 2012, boys: 30933, girls: 29322},
+                { year: 2013, boys: 30138, girls: 28857},
+                { year: 2014, boys: 30370, girls: 28714},
+                { year: 2015, boys: 30369, girls: 28689},
+                { year: 2016, boys: 30386, girls: 28504},
+            ];
+
+            var totalFodte = 0;
+
+            function summerFodte() {
+                for (var i=0; i<fodeTabell.length; i++){
+                    fodeTabell[i].total = fodeTabell[i].boys + fodeTabell[i].girls;
+                    totalFodte += fodeTabell[i].total;
+                }
+            }
+
+            function samanliknTotal(a,b) {
+                if (a.total > b.total) {return 1;}
+                    else if (a.total < b.total) {return -1;}
+                        else {return 0;}
+            }
+
+            var tabellSortAsc = fodeTabell;
+            tabellSortAsc = tabellSortAsc.sort(samanliknTotal);
+
+            var minstFodte = tabellSortAsc[0].year;
+            var flestFodte = tabellSortAsc[(fodeTabell.length-1)].year;
+
+            var tabellEl = document.querySelector("#fodeStat");
+            var overskrifter = ["År", "Gutar", "Jenter", "Total"];
+            summerFodte();
+            lagTabell(tabellEl, overskrifter, fodeTabell);
+
+            document.getElementById("flest").innerHTML = flestFodte;
+            document.getElementById("minst").innerHTML = minstFodte;
+            document.getElementById("totalt").innerHTML = totalFodte;
+
+        </script>
+
+    </body>
+</html>

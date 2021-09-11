@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .innpakning {
+                width: 50%;
+                padding: 20px;
+                margin: auto;
+                border: 3px solid black;
+                background-color: lightgreen;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            input[type="text"],
+            input[type="number"],
+            textarea,
+            select {
+                display: block;
+                margin-top: 2px;
+                margin-bottom: 10px;
+                font-family: inherit;
+                color: #666666;
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 4px;
+                padding: 5px;
+                box-shadow: 0 4px 5px rgba(0, 0, 0, 0.7);
+                box-sizing: border-box;
+}
+        </style>
+    </head>
+    <body>
+
+        <div class="innpakning">
+            <h1>Vel dine favorittfruktar:</h1><br>
+
+            
+            
+            <p id="resultat">Sum:</p>
+
+        </div>
+        
+        <script>
+
+            var innpakningEl = document.querySelector(".innpakning");
+
+            var resultatEl = document.querySelector("#resultat");
+
+            var talFelt = 6;
+
+            for (var i = 0; i < talFelt; i++) {
+                var nyttTalFelt = document.createElement("input");
+                nyttTalFelt.type = "number";
+                nyttTalFelt.addEventListener("input", reknUt);
+                innpakningEl.appendChild(nyttTalFelt);
+            }
+
+            function reknUt() {
+                var talFeltEl = document.querySelectorAll("input[type='number']");
+
+                var sum = 0;
+
+                for (var i = 0; i < talFeltEl.length; i++) {
+                    sum += Number(talFeltEl[i].value)
+                }
+
+                resultatEl.innerHTML = "Sum: " + sum;
+            }
+
+        </script>
+
+    </body>
+</html>

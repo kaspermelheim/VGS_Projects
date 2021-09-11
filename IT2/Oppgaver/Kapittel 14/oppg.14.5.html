@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: #daad;
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="mittCanvas" width="500" height="300"></canvas>
+
+    </body>
+    <script>
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+        
+        function tegnEtTre(x, y) {
+            ctx.fillStyle = "green";
+            ctx.fillRect(x, y, 150, 150);
+            ctx.fillStyle = "brown";
+            ctx.fillRect(x + 50, y + 100, 50, 150);
+        }
+
+        tegnEtTre(120,50);
+
+       
+
+
+
+
+
+    </script>
+</html>

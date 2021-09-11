@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman</title>
+        <style>
+            .innpakning {
+                width: 800px;
+                height: 2000px;
+                background-color: rgb(230, 41, 7);
+                margin: 50px auto;
+            }
+            .innpakning div {
+                width: 100px;
+                height: 100px;
+                background-color: lightblue;
+            }
+            .absolutt {
+                position: absolute;
+                left: 50px;
+                top: 5px;
+            }
+            .relativ {
+                position: relative;
+                top: -2px;
+            }
+            .fiksert {
+                position: fixed;
+                left: 0;
+                top: 200px;
+            }
+            .fiksert2 {
+                position: absolute;
+                height: 100px;
+                width: 100px;
+                left: 80px;
+                top: 80px;
+                background-color: blue;
+            }
+            body {
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="innpakning">
+            <div class="absolutt">absolute</div>
+            <div class="relativ">relativ</div>
+            <div class="fiksert"><div class="fiksert2">absolutt</div>fiksert</div>
+        </div>
+
+        <script>
+             
+        
+        </script>
+    
+    </body>
+</html>

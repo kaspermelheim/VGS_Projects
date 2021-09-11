@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: rgb(151, 250, 151);
+                display: block;
+                margin: auto;
+            }
+            h1 {
+                margin: auto;
+                text-align: center;
+                font-size: 20px;
+                font-family: 'Century Gothic';
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Antall spiste pizza:</h1>
+        </header>
+
+        <canvas id="mittCanvas" width="600" height="300">Antall</canvas>
+
+    </body>
+    <script>
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var data = [
+            { beskrivelse: "Per", verdi: 4 },
+            { beskrivelse: "Pål", verdi: 2 },
+            { beskrivelse: "Espen", verdi: 1 },
+            ];
+            // Henter canvas-elementet vårt
+            var canvas = document.getElementById("mittCanvas");
+            // Angir at vi ønsker å bruke 2d-konteksten
+            var ctx = canvas.getContext("2d");
+            // En array med 12 farger
+            // Hentet fra www.colorbrewer.org
+            var farger = ["#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99",
+            "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99",
+            "#b15928"];
+            // Angir at en hel sirkel er Math.PI * 2 radianer
+            var helsirkel = Math.PI * 2;
+            // Setter sirkelens sentrum langs x-aksen
+            var sentrumX = canvas.width / 3;
+            // Setter sirkelens sentrum langs y-aksen
+            var sentrumY = canvas.height / 2;
+            // Angir sirkelens radius
+            var radius = 100;
+            // Variabel som lagrer summen av verdiene
+            var sum = 0;
+            // Finner summen av verdiene
+            for (var i = 0; i < data.length; i++) {
+                sum += data[i].verdi;
+            }
+
+            // Variabel som lagrer hvor forrige "kakestykke" sluttet
+            var forrigeSlutt = 0; 
+
+            // Går gjennom alle verdiene og tegner kakestykker for hver av dem
+            for (var i = 0; i < data.length; i++) {
+                    // Beregner kakestykkets andel
+                    var andel = data[i].verdi / sum;
+                    // Finner stykkets størrelse
+                    var stykkeStr = andel * helsirkel;
+                    // Beregner hvor stykket skal slutte
+                    var kakeSlutt = forrigeSlutt + stykkeStr;
+                    // Lager en ny path
+                    ctx.beginPath();
+                    // Tegner en sirkelsektor
+                    ctx.arc(sentrumX, sentrumY, radius, forrigeSlutt, kakeSlutt);
+                    // Fullfører sirkelsektoren inn til sirkelens sentrum
+                    ctx.lineTo(sentrumX, sentrumY);
+                    // Setter en ny farge for kakestykket
+                    ctx.fillStyle = farger[i];
+                    // Skraverer kakestykket
+                    ctx.fill();
+                    // Avslutter sirkelsektoren
+                    ctx.closePath();
+                    // Oppdaterer variabelen forrigeSlutt
+                    forrigeSlutt = kakeSlutt;
+                    // Angir tekststørrelse og skrifttype
+                    ctx.font = "24px 'Century Gothic'";
+                    // Teksten plasseres nedenfor punktet den skrives til
+                    ctx.textBaseline = "hanging";
+                    // Starter teksten litt over halvveis langs x-aksen
+                    var tekstStartX = canvas.width / 1.7;
+                    // Starter teksten slik at den blir midtstilt langs y-aksen
+                    var tekstStartY = (canvas.height / 2) - (30 * (data.length / 2)) +
+                    (30 * i);
+                    // Skriver ut beskrivelsen med verdien i parentes
+                    ctx.fillText(data[i].beskrivelse + "(" + data[i].verdi + ")",
+                    tekstStartX, tekstStartY);
+            } 
+        
+        
+
+
+
+
+    </script>
+</html>

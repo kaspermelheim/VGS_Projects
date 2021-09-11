@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Quiz</title>
+        <style>
+
+            body {
+                background-color: #e0e0e0;
+                font-family: "Century Gothic", Arial, sans-serif;
+                font-size: 14px;
+                color: #323232;
+            }
+            .innpakning {
+                width: 50%;
+                margin: auto;
+                padding: 5px;
+                background-color: #fefefe;
+                border: 3px solid black;
+            }
+            .resultat {
+                margin: 20px 5px;
+                padding: 20px;
+                font-size: 3.5ex;
+            }
+            .ein {
+                color: green;
+            }
+            
+        </style>
+    </head>
+    <body>
+
+        <div class="innpakning">
+
+            <h1>Quiz</h1>
+            <p class="resultat"></p>
+
+
+        </div>
+
+        <script>
+
+            var innpakningEl = document.querySelector(".innpakning");
+            var resultatEl = document.querySelector(".resultat");
+
+            var quiz = [
+                { sporsmaal: "Kva er Kasper sitt etternamn?",
+                  alternativer: ["Yttri", "Hønsi", "Melheim"],
+                  fasit: ["galt", "galt", "riktig"]},
+                  { sporsmaal: "Kva er Alvar sitt etternamn?",
+                  alternativer: ["Yttri", "Hønsi", "Melheim"],
+                  fasit: ["galt", "riktig", "galt"]},
+                  { sporsmaal: "Kva er Eskil sitt etternamn?",
+                  alternativer: ["Yttri", "Hønsi", "Melheim"],
+                  fasit: ["riktig", "galt", "galt"]}
+            ];
+
+            for (var i = 0; i < quiz.length; i++) {
+
+                var sporsmaalEl = document.createElement("p");
+
+                sporsmaalEl.innerHTML += "<h3>" + quiz[i].sporsmaal + "</h3>";
+
+                for (var j = 0; j < quiz[i].alternativer.length; j++) {
+                    var nyCheckbox = document.createElement("input");
+
+                    nyCheckbox.type = "checkbox";
+                    nyCheckbox.value = quiz[i].fasit[j];
+
+                    sporsmaalEl.appendChild(nyCheckbox);
+                    sporsmaalEl.innerHTML += quiz[i].alternativer[j] + "<br>";
+                }
+                innpakningEl.appendChild(sporsmaalEl);
+            }
+
+            var knapp = document.createElement("button");
+            knapp.innerHTML = "Sjekk svar";
+            knapp.addEventListener("click", finnPoeng);
+            innpakningEl.appendChild(knapp);
+
+            function finnPoeng() {
+                var alleCheckboxEl = document.querySelectorAll("input[type='checkbox']");
+
+                var antallPoeng = 0;
+
+                for (var i = 0; i < alleCheckboxEl.length; i++) {
+                    if (alleCheckboxEl[i].checked) {
+                        if (alleCheckboxEl[i].value === "riktig") {
+                            antallPoeng++;
+                            input.className = "ein";
+                        }
+                            else {
+                                antallPoeng + 0;
+                            }
+                    }
+                }
+                resultatEl.innerHTML = "Du fikk " + antallPoeng + " poeng!";
+            }
+            
+
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,30 @@
+body {
+    background-color: lime;
+    font-family: sans-serif;
+    margin-left: 20px
+}
+
+img {
+    width: 200px;
+    border: solid 10px black;
+    box-shadow: 5px 5px 20px gray;
+}
+
+h1,h2 {
+    color: darkred;
+    text-shadow: 0px 0px 8px black
+}
+
+h1 {
+    font-size: 30pt;
+}
+h4 {
+    position: absolute;
+    top: 40px;
+    right: 5px;
+}
+h3 {
+    position: absolute;
+    top: 10px;
+    right: 250px;
+}

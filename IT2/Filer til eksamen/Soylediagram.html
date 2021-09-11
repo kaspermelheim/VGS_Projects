@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Søyle-diagram</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: rgb(168, 168, 168);
+                display: block;
+                margin: auto;
+            }
+            h1 {
+                margin: auto;
+                text-align: center;
+                font-size: 20px;
+                font-family: 'Century Gothic';
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Oppslutning parti:</h1>
+        </header>
+
+        <canvas id="mittCanvas" width="600" height="300">Antall</canvas>
+
+    </body>
+    <script>
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var oppslutning = [
+            { beskrivelse: "R", verdi: 2.4 },
+            { beskrivelse: "SV", verdi: 6.0 },
+            { beskrivelse: "AP", verdi: 27.4 },
+            { beskrivelse: "SP", verdi: 10.3 },
+            { beskrivelse: "MDG", verdi: 3.2 },
+            { beskrivelse: "KRF", verdi: 4.2 },
+            { beskrivelse: "V", verdi: 4.4 },
+            { beskrivelse: "H", verdi: 15.0 },
+            { beskrivelse: "P", verdi: 5.0 },
+            { beskrivelse: "FRP", verdi: 20.2 }
+            ]; 
+
+            function tegnSoylediagram(data, tekstBredde) {
+                // Canvasets totalbredde
+                var totalBredde = canvas.width;
+                // Søylenes bredde
+                var soyleBredde = totalBredde - tekstBredde - 10;
+                // Setter canvasets høyde til 30 * antall verdier
+                canvas.height = data.length * 30;
+                // Variabel for å lagre største verdi (max)
+                var max = 0;
+                // Går gjennom alle verdiene for å finne største verdi
+                for (var i = 0; i < data.length; i++) {
+                // Oppdaterer max hvis en verdi er større enn max
+                        if (data[i].verdi > max) {
+                        max = data[i].verdi;
+                        }
+                }
+                // Angir tekststørrelse og skrifttype
+                ctx.font = "24px 'Century Gothic'";
+                // Høyrejusterer teksten
+                ctx.textAlign = "end";
+                // Teksten plasseres nedenfor punktet den skrives til
+                ctx.textBaseline = "hanging";
+                // Går gjennom hele datasettet
+                for (var i = 0; i < data.length; i++) {
+                    // Beregner verdiens andel av max og ganger med soyleBredde
+                    var andel = (data[i].verdi / max) * soyleBredde;
+                    // Angir tekstfarge
+                    ctx.fillStyle = "hsl(" + i * 30 + ", 100%, 70%)";
+                    // Skriver ut beskrivelsen med verdien i parentes
+                    ctx.fillText(data[i].beskrivelse + "(" + data[i].verdi + ")",
+                    tekstBredde, 30 * i + 3); 
+                    // Angir søylefarge
+                    ctx.fillStyle = "hsl(" + i * 30 + ", 100%, 70%)";
+                    // Tegner søylen med bredde lik andelen til verdien
+                    ctx.fillRect(tekstBredde + 5, 30 * i + 3, andel, 23);
+                }
+             } 
+             tegnSoylediagram(oppslutning, 120);
+                
+                
+        
+
+
+
+
+    </script>
+</html>

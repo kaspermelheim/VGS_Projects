@@ -1,0 +1,53 @@
+#wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-color: red;
+    width: 970px;
+    margin: auto;
+    flex-shrink: 2
+}
+header {
+    border-style: solid;
+    flex-basis: 100%;
+}
+nav {
+    border-style: solid;
+    flex-basis: 100%;
+}
+main {
+    border-style: solid;
+    flex: auto;
+    height: 820px;
+    overflow-y: auto;
+}
+nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+nav li a {
+    display: block;
+    text-decoration: none;
+    background-color: peachpuff;
+    color: black;
+    font-size: 30px;
+    padding: 10px;
+}
+nav li a:hover{
+    background-color: #710;
+}
+nav li {
+    float: left;
+    width: 25%;
+}
+div.fixed {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border: solid 2px black;
+    background-color: yellow;
+    font-size: 20px;
+}

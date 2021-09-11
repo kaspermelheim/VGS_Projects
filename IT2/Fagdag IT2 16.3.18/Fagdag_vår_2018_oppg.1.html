@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <title>Oppgave 1</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: rgb(110, 167, 241);
+      font-family: "Century Gothic", Arial, sans-serif;
+      font-size: 14px;
+      color: #323232;
+    }
+    .innpakning {
+      width: 800px;
+      height:460px;
+      font-size: 10px;
+      background-image: url("./filer/Husdyr.jpg"); 
+      position: relative; 
+      margin: 10px auto;
+      border: 2px solid black;
+    }
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .knapp {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%; 
+        position: absolute; 
+      }
+
+      /* Kode for dei ulike plasseringane av knappane */
+      .hoene { top: 300px; right: 130px; }
+      .okse { top: 50px; right: 130px; }
+      .ku { top:240px; left: 170px; }
+      .gris { top: 15px; left: 120px; } 
+     
+     /* Hover effekt på knappane */
+      .knapp:hover {
+        border: solid 4px rgb(209, 45, 45);
+        cursor: pointer;
+        background-color: rgb(209, 45, 45);
+        opacity: 0.3;
+      }
+      #p1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+      }
+  </style>
+</head>
+<body>
+        <h1>Klikk på kua</h1>
+
+        <!-- Kode for dei 4 knappane med ulike posisjonar -->
+        <div class="innpakning">
+                <div class="knapp ku"></div>
+                <div class="knapp okse"></div>
+                <div class="knapp gris"></div>
+                <div class="knapp hoene"></div>
+        </div>
+        
+        <p id="p1"></p>
+
+        <audio id="galt">
+                <source src="./filer/Galt.wav" type="audio/wav">
+        </audio>
+
+        <audio id="riktig">
+                <source src="./filer/Riktig.wav" type="audio/wav">
+        </audio>
+
+
+        <script>
+            // Hentar element
+            var galtEl = document.querySelector("#galt");
+            var riktigEl = document.querySelector("#riktig");
+            var meldingEl = document.querySelector("#p1");
+
+            // Hentar alle knappar inn i ein Array via querySelectorAll
+            var knapperEl = document.querySelectorAll(".knapp");
+
+            // Legg til lyttarar på "knappane" 
+            for (var i = 0; i < knapperEl.length; i++) {
+            knapperEl[i].addEventListener("click", sjekkSvar);
+            }
+
+            // Funksjonen sjekkSvar() kjøres når en knapp trykkes
+            function sjekkSvar(e) {
+            // Sjekker kva "knapp" som er trykt ved å sjekke klassenamnet til elementet.
+            if (e.target.className === "knapp ku") {
+                meldingEl.innerHTML = "Riktig svar!";
+                riktigEl.play();
+
+            } else {
+                meldingEl.innerHTML = "Feil svar!";
+                galtEl.play();
+                } 
+            
+            // Slutt else
+            } // Slutt sjekkSvar
+
+        </script>
+</body>
+</html>

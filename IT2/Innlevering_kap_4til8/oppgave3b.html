@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+    </head>
+    <body>
+        
+        <p id="paragraf">Dette er ein paragraf.</p>
+
+        <script>
+
+            var paragrafEl = document.querySelector("#paragraf");
+            paragrafEl.addEventListener("mouseout", nyTekst);
+            paragrafEl.addEventListener("mouseover", nyTekst2);
+
+            function nyTekst() {
+                paragrafEl.innerHTML = "utenfor"
+            }
+
+            function nyTekst2() {
+                paragrafEl.innerHTML = "over"
+            }
+
+
+        </script>
+    
+    </body>
+</html>

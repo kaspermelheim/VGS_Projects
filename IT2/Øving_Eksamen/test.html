@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            
+            function solve(a, b, c) {
+    var result = (-1 * b + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+    var result2 = (-1 * b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+    return result.toFixed(2) + "<br>" + result2.toFixed(2);
+}
+document.write(solve(3, 2, -1));
+
+        </script>
+    
+    </body>
+</html>

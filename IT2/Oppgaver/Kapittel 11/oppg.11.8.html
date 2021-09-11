@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .innpakning {
+                width: 50%;
+                padding: 20px;
+                margin: auto;
+                border: 3px solid black;
+                background-color: lightgreen;
+                font-family: Arial, Helvetica, sans-serif;
+                border-radius: 5px;
+            }
+            input[type="text"],
+            input[type="number"],
+            textarea,
+            select {
+                display: block;
+                margin-top: 2px;
+                margin-bottom: 10px;
+                font-family: inherit;
+                color: #666666;
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 4px;
+                padding: 5px;
+                box-shadow: 0 4px 5px rgba(0, 0, 0, 0.7);
+                box-sizing: border-box;
+            }
+
+            #knapp {
+                background-color: white;
+                color: black;
+                border: 2px solid #555555;
+                border-radius: 5px;
+            }
+
+            #knapp:hover {
+                background-color: rgb(74, 177, 74);
+                color: white;
+            }
+            .knapp {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="innpakning">
+            <h1>Vel dine favorittfruktar:</h1><br>
+
+            <input class="kryss" type="checkbox" name="format" id="Banan">Banan<br>
+            <input class="kryss" type="checkbox" name="format" id="Eple">Eple<br>
+            <input class="kryss" type="checkbox" name="format" id="Ananas">Ananas<br>
+            <input class="kryss" type="checkbox" name="format" id="Druer">Druer<br>
+            <input class="kryss" type="checkbox" name="format" id="Appelsin">Appelsin<br>
+            <input class="kryss" type="checkbox" name="format" id="Mandarin">Mandarin<br>
+            <input class="kryss" type="checkbox" name="format" id="Jordbær">Jordbær<br>
+            <input class="kryss" type="checkbox" name="format" id="Bringebær">Bringebær<br>
+            <input class="kryss" type="checkbox" name="format" id="Pære">Pære<br>
+            <input class="kryss" type="checkbox" name="format" id="Mango">Mango<br>
+            
+            <p id="resultat">Dine valg:</p>
+            <button class="knapp" id="knapp">Vel</button>
+
+        </div>
+        
+        <script>
+
+            var valgEl = document.querySelectorAll("input");
+            var knappEl = document.querySelector("#knapp");
+            var resultatEl = document.querySelector("#resultat");
+
+            knappEl.addEventListener("click", val);
+
+            function listeners(array) {
+                for (i = 0; i < array.length; i++) {
+                    array[i].addEventListener("click", val);
+                }
+            }
+
+            listeners(valgEl);
+
+            function val() {
+                resultatEl.innerHTML = "Dine valg: <br><br>"
+                for (i = 0; i < valgEl.length; i++) {
+                    if (valgEl[i].checked) {
+                        resultatEl.innerHTML += valgEl[i].id + "<br>";
+                    }
+                }
+            }
+
+        </script>
+
+    </body>
+</html>

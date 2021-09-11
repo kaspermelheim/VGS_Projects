@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman</title>
+        <style>
+            .innpakning {
+                width: 600px;
+                margin: auto;
+            }
+            canvas {
+                background-color: white;
+            }
+            input[type="text"] {
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="innpakning">
+
+            <h1>Hangman</h1>
+
+            <p id="sjanserIgjen">Antall sjanser igjen:</p>
+            <p id="riktigeBokstaver">Dine bokstaver:</p>
+            <p id="brukteBokstaver">Gjettede bokstaver:</p>
+
+            <canvas width="600" height="400" id="mittCanvas"></canvas>
+
+            <p id="mottaBokstav">
+                <input maxlength="1" type="text" name="bokstav" id="bokstav">
+                <button id="knapp">Test bokstav</button>
+            </p>
+        
+        </div>
+
+        <script>
+
+            var canvas = document.querySelector("#mittCanvas");
+            var ctx = canvas.getContext("2d");
+
+            var tekstfeltEl = document.querySelector("#bokstav");
+
+            var sjanserIgjenEl = document.querySelector("#sjanserIgjen");
+            var riktigeBokstaverEl = document.querySelector("#riktigeBokstaver");
+            var brukteBokstaverEl = document.querySelector("#brukteBokstaver");
+
+            var knappEl = document.querySelector("#knapp");
+            knappEl.addEventListener("click", taimotBokstav);
+
+            var losningsord = "LONDON";
+
+            var brukteBokstaver = [];
+            var riktigeBokstaver = ["_","_","_","_","_","_"];
+
+            var antallSjanser = 6;
+
+            teiknGalge();
+
+            riktigeBokstaverEl.innerHTML = "Riktige bokstaver: " + riktigeBokstaver;
+
+            function taimotBokstav() {
+                console.log("Du trykket på knappen!");
+
+                var gjettetBokstav = tekstfeltEl.value;
+                gjettetBokstav = gjettetBokstav.toUpperCase();
+
+                if (brukteBokstaver.indexOf(gjettetBokstav) === -1) {
+                    brukteBokstaver.push(gjettetBokstav);
+
+                    if (losningsord.indexOf(gjettetBokstav) === -1) {
+                        antallSjanser -= 1;
+
+                        if (antallSjanser === 5) {
+                            teiknHovud();
+                        }
+                            else if (antallSjanser === 4) {
+                                teiknKropp();
+                            }
+                                else if (antallSjanser === 3) {
+                                    teiknVenstreArm();
+                                }
+                                    else if (antallSjanser === 2) {
+                                        teiknHogreArm();
+                                    }
+                                        else if (antallSjanser === 1) {
+                                            teiknVenstreBein();
+                                        }
+                                            else if (antallSjanser === 0) {
+                                                teiknHogreBein();
+                                                alert("Du tapte!");
+                                            }
+                    } else {
+                        
+                        for (var i = 0; i < losningsord.length; i++) {
+                            if(losningsord[i] === gjettetBokstav) {
+
+                                riktigeBokstaver[i] = gjettetBokstav;
+                            }
+                        }
+                    }
+                } else {
+                    alert("Bokstaven er allerede gjettet!");
+                }
+
+                brukteBokstaver.sort();
+
+                //Skriv ut beskjeder om brukte, riktige og antall bokstavar, og antall sjanser igjen
+                brukteBokstaverEl.innerHTML = "Brukte bokstavar: " + brukteBokstaver;
+                riktigeBokstaverEl.innerHTML = "Løysingsord: " + riktigeBokstaver;
+                sjanserIgjenEl.innerHTML = "Antall sjanser igjen: <strong>" + antallSjanser + "</strong>";
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            function teiknGalge() {
+                ctx.beginPath();
+                ctx.moveTo(100, 320);
+                ctx.lineTo(100, 300);
+                ctx.lineTo(500, 300);
+                ctx.lineTo(500, 320);
+                ctx.moveTo(200, 300);
+                ctx.lineTo(200, 20);
+                ctx.lineTo(350, 20);
+                ctx.lineTo(350, 50);
+                ctx.lineWidth = 5;
+                ctx.stroke();
+            }
+            
+            function teiknHovud() {
+                ctx.beginPath();
+                ctx.arc(350, 75, 25, 0, Math.PI*2);
+                ctx.stroke();
+            }
+
+            function teiknKropp() {
+                ctx.beginPath();
+                ctx.moveTo(350, 100);
+                ctx.lineTo(350, 225);
+                ctx.stroke();
+            }
+
+            function teiknVenstreArm() {
+                ctx.beginPath();
+                ctx.moveTo(350, 125);
+                ctx.lineTo(300, 175);
+                ctx.stroke();
+            }
+
+            function teiknHogreArm() {
+                ctx.beginPath();
+                ctx.moveTo(350, 125);
+                ctx.lineTo(400, 175);
+                ctx.stroke();
+            }
+
+            function teiknVenstreBein() {
+                ctx.beginPath();
+                ctx.moveTo(350, 225);
+                ctx.lineTo(300, 275);
+                ctx.stroke();
+            }
+
+            function teiknHogreBein() {
+                ctx.beginPath();
+                ctx.moveTo(350, 225);
+                ctx.lineTo(400, 275);
+                ctx.stroke();
+            }
+
+             
+        
+        </script>
+    
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman</title>
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                background-color: #323232;
+                cursor: none;
+                overflow: hidden;
+            }
+            div {
+                width: 75px;
+                height: 75px;
+                border-radius: 50%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div></div>
+        
+
+        <script>
+             
+             var bodyEl = document.querySelector("body");
+             var sirkelEl = document.querySelector("div");
+
+             bodyEl.addEventListener("mousemove", flyttSirkel);
+
+             function flyttSirkel(e) {
+                  // Bruker x-koordinaten som sirkelens bredde
+                    var bredde = e.clientX;
+                    sirkelEl.style.width = bredde + "px";
+                    // Bruker y-koordinaten som sirkelens høyde
+                    var hoyde = e.clientY;
+                    sirkelEl.style.height = hoyde + "px";
+                    // Setter sirkelens left-egenskap lik musepekerens x-koordinat
+                    sirkelEl.style.left = (e.clientX - (bredde / 2)) + "px";
+                    // Setter sirkelens top-egenskap lik musepekerens y-koordinat
+                    sirkelEl.style.top = (e.clientY - (hoyde / 2)) + "px"; 
+
+
+                 sirkelEl.style.backgroundColor = "hsl(" + e.clientX + "," + e.clientY + "%, 50%)";
+             }
+        
+        </script>
+    
+    </body>
+</html>

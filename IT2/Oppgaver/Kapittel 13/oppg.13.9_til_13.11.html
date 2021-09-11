@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+        .innpakning {
+            width: 50%;
+            margin: auto;
+            padding: 7px;
+            background-color: rgb(228, 186, 145);
+            border: 1px solid #555;
+        }
+        button {
+            margin: 12px 0px;
+            background-color: lightblue;
+            border: 1px solid #555;
+            text-align: center;
+            padding: 8px 15px;
+        }
+        button:hover {
+            background-color: rgb(37, 193, 245);
+        }
+        button:active {
+            background-color: rgb(2, 117, 155);
+        }
+</style>
+    </head>
+    <body>
+
+        <div class="innpakning">
+
+        <video width="100%" controls>
+            <source src="./Video/Dansere/dans.mp4" type="video/mp4">
+            Denne nettleseren støttar ikkje video-elementet.
+        </video>
+
+        <audio controls>
+            <source src="./Lyd/Melodiar/Melodi 6.mp3" type="audio/mpeg">
+            Denne nettleseren støttar ikkje audio-elementet.
+        </audio><br>
+
+        <button id="knapp">Play</button>
+        <button id="knapp2">Pause</button>
+        
+        </div>
+        <script>
+
+            var knappEl = document.querySelector("#knapp");
+            var knapp2El = document.querySelector("#knapp2");
+            var video = document.querySelector("video");
+            var lyd = document.querySelector("audio");
+
+            video.addEventListener("ended", minFunksjon);
+
+            knappEl.addEventListener("click", start);
+            knapp2El.addEventListener("click", stopp);
+
+            function start() {
+                lyd.play();
+                video.play();
+            }
+
+            function stopp() {
+                lyd.pause();
+                video.pause();
+            }
+
+            function minFunksjon() {
+                console.log("Video er ferdig avspelt!");
+            }
+
+        </script>
+
+    </body>
+</html>

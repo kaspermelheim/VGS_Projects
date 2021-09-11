@@ -1,0 +1,11 @@
+.navbar {
+     background-color: black;
+}
+
+.navbar a{
+    color: seagreen;
+    font-family: Courier New, Courier, monospace;
+    font-size: 20px;  
+    font-weight: bold; 
+}
+

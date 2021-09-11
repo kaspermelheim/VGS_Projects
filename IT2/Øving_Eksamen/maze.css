@@ -1,0 +1,91 @@
+.base {
+    position: absolute;
+    background-color: black;
+}
+#borderdiv1 { position: absolute; background-color: black; left: 0; top: 0; width: 20px; height: 100%;}
+#borderdiv2 { position: absolute; background-color: black; left: 0; bottom: 0; width: 100%; height: 20px;}
+#borderdiv3 { position: absolute; background-color: black; bottom: 0; right: 0; width: 20px; height: 100%;}
+#borderdiv4 { position: absolute; background-color: black; right: 0; top: 0; width: 100%; height: 20px;}
+
+#div1 {
+    height: 600px;
+    width: 400px;
+    left: 80px;
+    top: 0;
+}
+
+#div3 {
+    left: 510px;
+    top: 180px;
+    width: 330px;
+    height: 457px;
+}
+#div4 {
+    top: 0;
+    left: 480px;
+    width: 330px;
+    height: 155px;
+}
+
+#div6 {
+    width: 200px;
+    height: 602px;
+    bottom: -617px;
+    left: 835px;
+}
+
+#div7 {
+    width: 100px;
+    height: 100px;
+    left: 1035px;
+    top: 35px;
+}
+
+#div8 {
+    left: 1150px;
+    top: 0;
+    width: 80px;
+    height: 150px;
+}
+
+#div9 {
+    left: 1050px;
+    top: 150px;
+    width: 180px;
+    height: 420px;
+}
+
+#div10 {
+    bottom: -597px;
+    left: 1256px;
+    width: 90px;
+    height: 300px;
+}
+#div11 {
+    bottom: -297px;
+    left: 1256px;
+    width: 45px;
+    height: 283px;
+}
+#div12 {
+    bottom: -234px;
+    left: 1301px;
+    width: 30px;
+    height: 220px;
+}
+#start {
+    position: absolute;
+    background-color: rgb(118, 197, 0);
+    left: 20px;
+    top: 20px;
+    width: 60px;
+    height: 50px;
+}
+#end {
+    position: absolute;
+    background-color: rgb(118, 197, 0);
+    left: 1301px;
+    top: 254px;
+    width: 45px;
+    height: 63px;
+}

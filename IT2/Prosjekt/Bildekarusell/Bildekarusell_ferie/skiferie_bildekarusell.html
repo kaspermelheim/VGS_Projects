@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Skiferie-Bildekarusell</title>
+        <style>
+
+            body {
+                background-color: #e0e0e0;
+            }
+            #bildekarusell {
+                width: 600px;
+                height: 300px;
+                position: relative;
+                margin: 0px auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                overflow: hidden;
+                border: 2px solid rgb(66, 56, 56);
+            }
+            .bilde {
+                width: 600px;
+                height: 300px;
+                position: absolute;
+                left: 0px;
+            }
+            @keyframes innFraHoyre {
+                from { left: 600px; }
+                to { left: 0px; }
+            }
+            @keyframes utTilVenstre {
+                from { left: 0px; }
+                to { left: -600px; }
+            }      
+            h1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgb(66, 56, 56);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #fiksert {
+                position: fixed;
+                right: 20px;
+                bottom: 1px;
+            }
+        </style>
+    </head>
+    <body>
+                 <h1>Bildekarusell - Skiferie</h1>
+        <div id="bildekarusell">
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+            <div class="bilde"></div>
+        </div>
+
+        <div id="fiksert">
+            <p>CR: Kasper Melheim</p>
+        </div>
+
+        
+        <script>
+       
+        var indeksSynligBilde = 0;
+        var indeksNesteBilde;
+        var tid = 3500;
+
+        // Ein array med alle bildefilene vi ønsker å vise fram
+        var bildefiler = ["bilde9.png", "bilde10.png", "bilde11.png", "bilde12.png","bilde13.png"];
+
+        //Henter alle elementer med klassen .bilde
+        var bilder = document.querySelectorAll(".bilde");
+
+        //Legger til bakgrunnsbildene,
+        //og setter display: none på alle bortsett fra første bilde
+        for (var i = 0; i < bilder.length; i++) {
+            bilder[i].style.backgroundImage = "url(images/" + bildefiler[i] + ")";
+
+            //Hvis bildet ikke er det første bildet (med indeks 0)
+            if (i != 0) {
+                bilder[i].style.display = "none";
+            }
+        }
+        setTimeout(flytt, tid);
+
+        function flytt() {
+            if (indeksSynligBilde === bilder.length - 1) {
+                indeksNesteBilde = 0;
+            }   else {
+                indeksNesteBilde = indeksSynligBilde + 1;
+            }
+
+            //Bildet settes inn til høyre for nåvørende bilde, 
+            //og animeres inn
+            bilder[indeksNesteBilde].style.left = "800px";
+            bilder[indeksNesteBilde].style.display = "initial";
+            bilder[indeksNesteBilde].style.animation = "innFraHoyre 2s forwards";
+
+            //Eksisterende bilde animeres ut til venstre
+            bilder[indeksSynligBilde].style.animation = "utTilVenstre 2s forwards";
+            
+            indeksSynligBilde = indeksNesteBilde;
+
+            setTimeout(flytt, tid);
+
+        }
+        
+        
+        </script>
+        
+    
+    
+    </body>
+</html>

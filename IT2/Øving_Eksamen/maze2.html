@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Maze</title>
+        <link rel="stylesheet" type="text/css" href="maze.css"> 
+        <link rel="stylesheet" type="text/css" href="button.css">
+        <style>
+            body {
+                background-color: white;
+            }  
+            #paragraf {
+                color: white;
+                position: absolute;
+                font-family: sans-serif;
+                font-weight: bold;
+                left: 110px;
+                font-size: 14px;
+            }
+            #border img {
+                position: absolute;
+                width: 1350px;
+                height: 620px;
+            }
+            #border {
+                display: none;
+            }
+            .cursor {
+                cursor: url(red_ball.png), auto;
+            }
+        </style>
+    </head>
+    <body class="cursor">
+
+        <div id="borderdiv1"></div>
+        <div id="borderdiv2"></div>
+        <div id="borderdiv3"></div>
+        <div id="borderdiv4"></div2>
+        
+        <div class="base" id="div1"></div>
+        <div class="base" id="div3"></div>
+        <div class="base" id="div4"></div>
+        <div class="base" id="div6"></div>
+        <div class="base" id="div7"></div>
+        <div class="base" id="div8"></div>
+        <div class="base" id="div9"></div>
+        <div class="base" id="div10"></div>
+        <div class="base" id="div11"></div>
+        <div class="base" id="div12"></div>
+        <div id="start"></div>
+        <div id="end"></div>
+
+        <div id="paragraf">
+            <h1>The Maze Game!</h1>
+            <p>Welcome to The Maze Game! Try to finish the maze<br> by moving your mouse on the white path.<br> The game will keep count
+                of how many times you<br> hit the walls, the person with least wall hits wins<br> the game! Made by Kasper Melheim.
+            </p>
+        </div>
+
+        <div id="border">
+            <img src="scary.jpg" alt="scary">
+            <audio id="audio">
+                <source src="scream.wav" type="audio/wav">
+            </audio>
+        </div>
+
+        <script>
+            var borderEl = document.querySelector("#border");
+            var audioEl = document.querySelector("#audio");
+
+            function scary() {
+                borderEl.style.display = "block";
+                audioEl.play();
+            }
+            function removeScary() {
+                borderEl.style.display = "none";
+                audioEl.pause();
+                audioEl.currentTime = 0;
+            }
+
+
+        
+        </script>
+    
+    </body>
+</html>

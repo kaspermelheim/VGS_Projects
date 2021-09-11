@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+  <title> Oppgave 3 </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="brukerinput.css">
+  <link rel="stylesheet" href="tabellstil.css">
+  <style>
+    body {
+      background-color: #e0e0e0;
+      font-family: "Century Gothic", Arial, sans-serif;
+      font-size: 14px;
+      color: #323232;
+    }
+    h1 {
+      margin :auto;
+      text-align: center;
+    }
+    .innpakning {
+      width: 50%;
+      margin: 10px auto;
+      padding: 5px;
+      background-color: white;
+      border: 3px solid black;
+    }
+    #avgistemme {
+      display: none;
+    }
+    #resultater {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="innpakning" id="innlogging">
+
+  <h1> Skuleval </h1>
+
+  Skriv inn passordet ditt
+  <input type="password" id="passord">
+
+  <p id="logginmelding"></p>
+
+  <button id="logginnknapp"> Logg inn </button>
+  <button id="visresultatknapp"> Vis resultat </button>
+</div>
+
+<div class="innpakning" id="avgistemme">
+  <h1> Avgi stemme </h1>
+  <input type="radio" name="parti" id="Rødt"> Rødt <br>
+  <input type="radio" name="parti" id="SV"> SV <br>
+  <input type="radio" name="parti" id="A"> A <br>
+  <input type="radio" name="parti" id="SP"> SP <br>
+  <input type="radio" name="parti" id="MDG"> MDG <br>
+  <input type="radio" name="parti" id="KrF"> KrF <br>
+  <input type="radio" name="parti" id="V"> V <br>
+  <input type="radio" name="parti" id="H"> H <br>
+  <input type="radio" name="parti" id="FrP"> FrP <br>
+  <input type="radio" name="parti" id="PIR"> PIR <br>
+
+  <p id="valgtparti">Velg eit parti</p>
+
+  <button id="stemknapp"> Avgi stemme </button>
+</div>
+
+<div class="innpakning" id="resultater">
+  <h1> Resultater </h1>
+  <button id="skjulresultatknapp"> Skjul resultat </button>
+  <br><br>
+  <div id="resultaterTabell"></div>
+</div>
+
+<script src="tabellfunksjon.js"></script>
+<script>
+// Hentar HTML-elementa
+var passordEl = document.querySelector("#passord");
+var logginmeldingEl = document.querySelector("#logginmelding");
+var resultaterEl = document.querySelector("#resultater");
+var resultaterTabellEl = document.querySelector("#resultaterTabell");
+var valgtpartiEl = document.querySelector("#valgtparti");
+var avgistemmeEl = document.querySelector("#avgistemme");
+
+var logginnknappEl = document.querySelector("#logginnknapp");
+var visresultatknappEl = document.querySelector("#visresultatknapp");
+var stemknappEl = document.querySelector("#stemknapp");
+var skjulresultatknappEl = document.querySelector("#skjulresultatknapp");
+
+// Legg til lyttarar
+logginnknappEl.addEventListener("click", logginn);
+visresultatknappEl.addEventListener("click", visresultater);
+skjulresultatknappEl.addEventListener("click", skjulresultater);
+stemknappEl.addEventListener("click", registrerStemme);
+
+// Hentar inn og legg til klikk-lyttar på alle radioknapper
+var radioknapperEl = document.querySelectorAll("input[type='radio']");
+
+for (var i = 0; i < radioknapperEl.length; i++) {
+  radioknapperEl[i].addEventListener("click", visValgtParti);
+}
+
+// Liste over godkjende passord
+var passordliste = [
+  "Passord001",
+  "Passord002",
+  "Passord003",
+  "Passord004",
+  "Passord005",
+  "Passord006",
+  "Passord007",
+  "Passord008",
+  "Passord009",
+  "Passord010"
+];
+
+// Oversikt over partia og oppslutninga dei har
+var oppslutning = [
+  { parti: "Rødt", prosent2013: 3.7, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "SV", prosent2013: 5.0, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "A", prosent2013: 23.0, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "SP", prosent2013: 4.2, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "MDG", prosent2013: 3.8, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "KrF", prosent2013: 2.8, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "V", prosent2013: 6.7, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "H", prosent2013: 28.2, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "Frp", prosent2013: 15.6, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { parti: "PIR", prosent2013: 4.3, stemmer2017: 0, prosent2017: 0, endring: 0 }
+];
+
+// Funksjon som behandlar innlogging
+function logginn() {
+  // Hentar passordet
+  var passord = passordEl.value;
+
+  // Variabel som avgjer om innlogging er vellykka
+  var innlogga = false;
+
+  // Sjekkar om passordet eksisterar
+  for (var i = 0; i < passordliste.length; i++) {
+    // Samenliknar passordet med alle passorda i arrayen
+    if (passordliste[i] == passord) {
+      // Godkjenner innlogging dersom passordet er godkjent
+      innlogga = true;
+
+      // Skriv melding til brukaren
+      logginmeldingEl.innerHTML = "Du er no innlogga.";
+
+      // Gjer stemmevinduet synleg
+      avgistemmeEl.style.display = "block";
+
+      // Fjernar passordet fra arrayen (fordi det no er brukt)
+      passordliste.splice(i, 1);
+    }
+  }
+
+  if (innlogga == false) {
+    // Innlogging ikkje godkjent - skriv melding til brukeren
+    logginmeldingEl.innerHTML = "Feil passord, prøv igjen.";
+  }
+}
+
+// Funksjon som viser kva parti som er valgt
+function visValgtParti(e) {
+  valgtpartiEl.innerHTML = "Du har valgt " + e.target.id + ". ";
+}
+
+// Funksjon som reknar ut og viser resultata
+function visresultater() {
+  // Går gjennom alle partia for å finne summen av stemmer i 2017
+  var sum = 0;
+
+  for (var i = 0; i < oppslutning.length; i++) {
+    sum += oppslutning[i].stemmer2017;
+  }
+
+  // Vi får NaN hvis vi prøver å vise resultata uten noken stemmer.
+  // For å unngå dette kan vi gi sum ein verdi dersom den er lik 0:
+  if (sum == 0) { sum = 1; }
+
+  // Reknar ut ny oppslutning og endring frå 2013 til 2017
+  for (var i = 0; i < oppslutning.length; i++) {
+    oppslutning[i].prosent2017 = (oppslutning[i].stemmer2017 / sum) * 100;
+    oppslutning[i].endring = oppslutning[i].prosent2017 - oppslutning[i].prosent2013;
+  }
+
+  // Lager ein array med overskrifter
+  var overskrifter = ["Parti", "Oppslutning 2013", "Stemmer 2017", "Oppslutning 2017", "Endring"];
+
+  // Tømmer elementet der tabellen skal teiknast opp, slik
+  // at tidlegare tabellar vert fjerna
+  resultaterTabellEl.innerHTML = "";
+
+  // Nyttar funksjonen lagTAbell(), som er i dokumentet tabellfunksjon.js,
+  // til å lage ein tabell med oversikt over partia og oppslutninga deiras
+  lagTabell(resultaterTabellEl, overskrifter, oppslutning);
+
+  // Gjer resultatelementet synleg
+  resultaterEl.style.display = "block";
+}
+
+// Funksjon som skjuler resultata
+function skjulresultater() {
+  // Skjuler resultatelementet
+  resultaterEl.style.display = "none";
+}
+
+// Funksjon som registrerar stemmer
+function registrerStemme() {
+  // Finn ut kva parti som fekk stemma, og aukar talet på stemmer for tilsvarende
+  // parti i arrayen oppslutning
+  for (var i = 0; i < radioknapperEl.length; i++) {
+    if (radioknapperEl[i].checked) {
+      oppslutning[i].stemmer2017++;
+
+      var registrertParti = oppslutning[i].parti;
+    }
+  }
+
+  // Skjuler stemmevinduet
+  avgistemmeEl.style.display = "none";
+
+  // Skriver ei stadfesting i startvinduet
+  logginmeldingEl.innerHTML = "Din stemme vart registrert (" + registrertParti + ").";
+}
+
+</script>
+
+</body>
+</html>

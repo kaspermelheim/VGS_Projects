@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bytt farge</title>
+  <meta charset="UTF-8">
+  <style>
+  body {
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 14px;
+  }
+  p {
+    padding: 20px;
+    cursor: pointer;
+  }
+  .gul {
+    background-color: yellow;
+  }
+  .rod {
+    background-color: red;
+  }
+  </style>
+</head>
+<body>
+  <p class="gul"> Trykk på meg! </p>
+  <p class="gul"> Trykk på meg! </p>
+  <p class="gul"> Trykk på meg! </p>
+  <p class="gul"> Trykk på meg! </p>
+  <p class="gul"> Trykk på meg! </p>
+  <p class="gul"> Trykk på meg! </p>
+
+<script>
+// Lager en array med alle p-elementene
+var avsnittEl = document.querySelectorAll("p");
+
+// Legger til en lytter på hvert av p-elementene
+for (var i = 0; i < avsnittEl.length; i++) {
+  avsnittEl[i].addEventListener("click", byttFarge);
+}
+
+// Hvis klassen er gul, bytt til rød, hvis ikke bytt til gul
+function byttFarge(e) {
+  if (e.target.className === "gul") {
+    e.target.className = "rod";
+  } else {
+    e.target.className = "gul";
+  }
+}
+</script>
+</body>
+</html>

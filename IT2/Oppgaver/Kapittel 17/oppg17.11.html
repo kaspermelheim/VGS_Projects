@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS</title>
+        <style>
+            div {
+                width: 150px;
+                height: 150px;
+                background-color: #359689;
+                transition-property: all;
+                transition-duration: 2s;
+                font-size: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: yellow;
+            }
+            div:hover {
+                width: 400px;
+                border-radius: 50%;
+                background-color: #cc1e12;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div></div>
+
+        <script>
+            
+            var divEl = document.querySelector("div");
+            divEl.addEventListener("transitionend",ferdig);
+
+            function ferdig() {
+                divEl.innerHTML = "FERDIG";
+                /*if (divEl.innerHTML == "FERDIG") {
+                divEl.innerHTML = "";
+                } else {
+                divEl.innerHTML = "FERDIG";
+                } */
+                console.log("FERDIG");
+               } 
+            
+        
+        </script>
+    
+    </body>
+</html>

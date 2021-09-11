@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+            }
+            #mittCanvas {
+                background-color: #daad;
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="mittCanvas" width="500" height="300"></canvas>
+
+    </body>
+    <script>
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+        
+        ctx.fillStyle = "green";
+        ctx.fillRect(50,50,100,100);
+
+        ctx.beginPath();
+        ctx.moveTo(95,100);
+        ctx.lineTo(100,200);
+        ctx.lineTo(120,200);
+        ctx.lineTo(100,100);
+
+        ctx.fillStyle = "brown";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(300,50);
+        ctx.lineTo(220,250);
+        ctx.lineTo(400,120);
+        ctx.lineTo(200,120);
+        ctx.lineTo(380,250);
+        ctx.closePath();
+
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+
+       
+
+
+
+
+
+    </script>
+</html>

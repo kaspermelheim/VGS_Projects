@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Flexbox i flexbox</title>
+        <style>
+            body {
+                background-color: #e0e0e0;
+                font-family: "Century Gothic", sans-serif;
+                font-size: 14px;
+                color: #323232;
+            }
+            .innpakning {
+                width: 500px;
+                min-height: 300px;
+                margin: 50px auto;
+                background-color: #c071b3;
+                display: flex;
+                border: 4px solid black;
+            }
+            .venstre, .hoyre {
+                margin: 8px;
+                border: 4px solid black;
+            }
+            .venstre {
+                background-color: #c3c3c3;
+                flex-grow: 1;
+            }
+            .hoyre {
+                flex-grow: 2;
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(247, 123, 77);
+            }
+            .innhold {
+                flex-grow: 1;
+                background-color: #c3c3c3;
+                margin: 8px;
+                border: 4px solid black;
+            }
+            .innpakning2 {
+                width: 500px;
+                min-height: 300px;
+                margin: auto;
+                background-color: #c071b3;
+                border: 4px solid black;
+                display: flex;
+                flex-direction: column;
+            }
+            .parent2 {
+                flex-grow: 1;
+                display: flex;
+                background-color: rgb(247, 123, 77);
+                padding: 4px;
+                margin: 8px;
+                border: 4px solid black;
+            }
+            .barn {
+                flex-grow: 1;
+                margin: 8px;
+                background-color: #c3c3c3;
+                border: 4px solid black;
+            }
+
+        </style> 
+    </head>
+    <body>
+    
+        <div class="innpakning">
+            <div class="venstre"></div>
+            <div class="hoyre">
+                <div class="innhold"></div>
+                <div class="innhold"></div>
+            </div>
+        </div>
+
+        <div class="innpakning">
+            <div class="venstre"></div>
+            <div class="venstre"></div>
+            <div class="venstre"></div>
+        </div>
+
+        <div class="innpakning2">
+            <div class="barn"></div>
+            <div class="parent2">
+                <div class="barn"></div>
+                <div class="barn"></div>
+            </div>
+        </div>
+
+        
+            
+
+        <script>
+              
+        
+        </script>
+    
+    </body>
+</html>

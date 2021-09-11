@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <script>
+
+            function samanlikn(a, b) {
+                console.log(a[1] + " - " + b[1] + " = " + (a[1] - b[1]));
+                return a[1] - b[1];
+            } 
+            
+            var personar = [["Hans",12], ["Nils",3], ["Sofie",5]];
+            personar.sort(samanlikn);
+            console.log(personar);
+
+        </script>
+
+    </body>
+</html>

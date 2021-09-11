@@ -1,0 +1,10 @@
+#wrapper {    
+    border-style:solid;    
+    border-color:limegreen;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height:50px; 
+    flex-grow: 5;    flex-shrink: 5;    flex-basis: 0px; 
+    }     
+    

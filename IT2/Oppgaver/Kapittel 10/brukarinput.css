@@ -1,0 +1,97 @@
+.innpakning {
+    width: 50%;
+    padding: 5px;
+    margin: auto;
+    border: 3px solid black;
+    background-color: lightgreen;
+}
+
+.innpakning #pris {
+    width: 98%;
+    padding: 5px;
+    border: 1px solid black;
+    background-color: rgb(68, 248, 68);
+}
+
+body {
+    background-color: rgb(62, 170, 62);
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    color: #666666;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    min-width: 130px;
+    width: 30%;
+}
+
+input[type="number"], select {
+    min-width: 130px;
+    width: 10%;
+}
+
+textarea {
+    min-width: 130px;
+    width: 100%;
+    height: 60px;
+}
+
+button {
+    padding: 10px;
+    color: white;
+    text-shadow: 0 -1px 1px #335166;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: linear-gradient(rgba(255,255,255,0.2), transparent);
+    background-color: #5588AA;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+    outline: none;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+button:hover, button.ok:hover, button.avbryt:hover {
+    padding: 10px;
+    color: white;
+    text-shadow: 0 -1px 1px #335166;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: linear-gradient(rgba(255,255,255,0.2), transparent);
+    background-color: rgb(22, 90, 136);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+    outline: none;
+    cursor: pointer;
+}
+
+button.ok:hover {
+    background-color: rgb(2, 146, 2)
+}
+
+button.avbryt:hover {
+    background-color: rgb(177, 3, 3);
+}
+
+button:active {
+    transform: translate(1px,1px);
+}
+
+button.ok {
+    background-color: rgb(2, 179, 2);
+}
+
+button.avbryt {
+    background-color: rgb(241, 22, 22);
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .innpakning {
+                width: 50%;
+                padding: 5px;
+                margin: auto;
+                border: 3px solid black;
+                background-color: lightgreen;
+                }
+        </style>
+    </head>
+    <body>
+        <div class="innpakning">
+
+
+            <input type="number" id="tal1">
+
+            <input type="number" id="tal2"><br><br>
+
+            <button id="knapp">Finn summen</button>
+            <button id="knapp2">Finn differansen</button>
+            <button id="knapp3">Finn gjennomsnittet</button>
+
+            <p id="resultat"></p>
+
+            </div>
+        <script>
+
+            var tal1El = document.querySelector("#tal1");
+            var tal2El = document.querySelector("#tal2");
+            var knappEl = document.querySelector("#knapp");
+            var knapp2El = document.querySelector("#knapp2");
+            var knapp3El = document.querySelector("#knapp3");
+            var resultatEl = document.querySelector("#resultat");
+
+            knappEl.addEventListener("click", reknUt);
+            knapp2El.addEventListener("click", reknUt2);
+            knapp3El.addEventListener("click", reknUt3);
+
+            function reknUt() {
+            
+                var tal1 = Number(tal1El.value);
+                var tal2 = Number(tal2El.value);
+                var sum = tal1 + tal2;
+
+                resultatEl.innerHTML = "Summen av " + tal1 + " og " + tal2 + " er " + sum;
+            }
+
+            function reknUt2() {
+
+                var tal1 = Number(tal1El.value);
+                var tal2 = Number(tal2El.value);
+                var sum = tal1 - tal2;
+
+                resultatEl.innerHTML = "Differansen av " + tal1 + " og " + tal2 + " er " + sum;
+            }
+
+            function reknUt3() {
+
+                var tal1 = Number(tal1El.value);
+                var tal2 = Number(tal2El.value);
+                var sum = ((tal1 + tal2) / 2);
+
+                resultatEl.innerHTML = "Gjennomsnittet av " + tal1 + " og " + tal2 + " er " + sum;
+            }
+            
+        </script>
+    </body>
+</html>

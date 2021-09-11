@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Oppgave 3</title>
+        <style>
+            body {
+                background-color: #f1de32;
+            }
+            .innpakning {
+                width: 50%;
+                margin: 10px auto;
+                padding: 5px;
+                background-color: rgb(245, 243, 147);
+                border: 1px solid black;
+                text-align: center;
+                }
+            
+            #mittCanvas {
+                background-color: rgb(245, 243, 147);
+                display: block;
+                margin: auto;
+                border: 1px solid black;
+            }
+            h1 {
+                margin: auto;
+                text-align: center;
+                font-size: 25px;
+                font-family: 'Century Gothic';
+            }
+            h2 {
+                margin: auto;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-size: 17px;
+                font-family: 'Century Gothic';
+            }
+            p {
+                font-family: 'Century Gothic';
+                font-size: 15px;
+            }
+            #pelement {
+                background-color: #f1de32;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Medaljar i Vinter OL</h1>
+        </header>
+
+        
+        <h2>Antall medaljar i kvar verdsdel:</h2>
+        <canvas id="mittCanvas" width="600" height="300">Antall</canvas>
+
+        <div class="innpakning">
+            <h2> Velg ein verdsdel: </h2>
+            
+            <input class="class1" type="radio" name="verdsdel" id="EU" > Europa <br>
+            <input class="class2" type="radio" name="verdsdel" id="NA"> Nord-Amerika <br>
+            <input class="class3" type="radio" name="verdsdel" id="A"> Asia <br><br>
+
+            <div id="pelement">
+                <p id="p1"></p>
+                <p id="p2"></p>
+                <p id="p3"></p>
+            </div>
+            
+          </div>
+
+    </body>
+    <script>
+
+        var p1El = document.querySelector("#p1");        
+        var p2El = document.querySelector("#p2");
+        var p3El = document.querySelector("#p3"); 
+
+        var valEl = document.querySelectorAll("input");
+
+        for (var i = 0; i < valEl.length; i++) {
+            valEl[i].addEventListener("click", valFunksjon);
+        }
+
+        function valFunksjon(e) {
+            if (e.target.className === "class1") {
+                p1El.innerHTML = "Verdsdelen Europa tok til saman 58 gull, 49 sølv og 41 bronse."; 
+                p2El.innerHTML = "Landa i Europa tok til saman 148 medaljar.";
+                p3El.innerHTML = "Dei tok..";
+
+            }   else if (e.target.className === "class2") {
+                    p1El.innerHTML = "Verdsdelen Nord-Amerika tok til saman 20 gull, 16 sølv og 16 bronse."; 
+                    p2El.innerHTML = "Landa i Nord-Amerika tok til saman 52 medaljar.";
+                    p3El.innerHTML = "Dei tok..";
+
+            }       else {
+                        p1El.innerHTML = "Verdsdelen Asia tok til saman 9 gull, 13 sølv og 8 bronse."; 
+                        p2El.innerHTML = "Landa i Asia tok til saman 30 medaljar.";
+                        p3El.innerHTML = "Dei tok 8.9% av alle gullmedaljane, 13.3% av alle sølvmedaljane, 8.6% av alle bronsemedaljane av alle medaljane totalt.";
+                }
+        }
+
+        var canvas = document.querySelector("#mittCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var medaljar = [
+            { beskrivelse: "Europa", verdi: 138.0 },
+            { beskrivelse: "Nord-Amerika", verdi: 52.0 },
+            { beskrivelse: "Asia", verdi: 30 }
+            ]; 
+
+            function tegnSoylediagram(data, tekstBredde) {
+                // Canvasets totalbredde
+                var totalBredde = canvas.width;
+                // Søylenes bredde
+                var soyleBredde = totalBredde - tekstBredde - 10;
+                // Setter canvasets høyde til 30 * antall verdier
+                canvas.height = data.length * 30;
+                // Variabel for å lagre største verdi (max)
+                var max = 0;
+                // Går gjennom alle verdiene for å finne største verdi
+                for (var i = 0; i < data.length; i++) {
+                // Oppdaterer max hvis en verdi er større enn max
+                        if (data[i].verdi > max) {
+                        max = data[i].verdi;
+                        }
+                }
+                // Angir tekststørrelse og skrifttype
+                ctx.font = "14px 'Century Gothic'";
+                // Høyrejusterer teksten
+                ctx.textAlign = "end";
+                // Teksten plasseres nedenfor punktet den skrives til
+                ctx.textBaseline = "hanging";
+                // Går gjennom hele datasettet
+                for (var i = 0; i < data.length; i++) {
+                    // Beregner verdiens andel av max og ganger med soyleBredde
+                    var andel = (data[i].verdi / max) * soyleBredde;
+                    // Angir tekstfarge
+                    ctx.fillStyle = "black";
+                    // Skriver ut beskrivelsen med verdien i parentes
+                    ctx.fillText(data[i].beskrivelse + "(" + data[i].verdi + ")",
+                    tekstBredde, 30 * i + 3); 
+                    // Angir søylefarge
+                    ctx.fillStyle = "hsl(" + i * 30 + ", 100%, 70%)";
+                    // Tegner søylen med bredde lik andelen til verdien
+                    ctx.fillRect(tekstBredde + 5, 30 * i + 3, andel, 23);
+                }
+             } 
+             tegnSoylediagram(medaljar, 120);
+                
+                
+        
+
+
+
+
+    </script>
+</html>

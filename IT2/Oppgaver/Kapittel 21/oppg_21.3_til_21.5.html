@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sprettball</title>
+        <style>
+
+            canvas {
+                display: block;
+                margin: 0 auto;
+                background-color: lightblue;
+            }        
+        </style>
+    </head>
+    <body>
+
+        <canvas width="600" height="300" id="mittCanvas"></canvas>
+
+        <audio id="riktig">
+                <source src="Riktig.wav" type="audio/wav">
+        </audio>
+        
+
+        <script>
+
+            "use strict"
+
+            var canvas = document.querySelector("#mittCanvas");
+            var ctx = canvas.getContext("2d");
+
+            /* var riktigEl = document.querySelector("#riktig"); */
+
+            class Ball {
+                constructor (x, y, r, xFart, yFart) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = r;
+                    this.xFart = xFart;
+                    this.yFart = yFart;
+                }
+
+                tegn() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 5;
+                    ctx.stroke();
+                    ctx.fillStyle = "orange";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+
+                flytt() {
+                    this.x += this.xFart;
+
+                    if (this.x-this.radius < 0 || this.x+this.radius > canvas.width) {
+                        this.xFart = -this.xFart;
+                        /* riktigEl.play(); */
+                    }
+
+                    if (this.y-this.radius < 0 || this.y+this.radius > canvas.height) {
+                        this.yFart = -this.yFart;
+                }
+            }
+            }
+
+                var ball = new Ball(canvas.width/2, canvas.height/2, 20, 5, 5);
+
+                function animer() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    ball.flytt();
+                    ball.tegn();
+                    
+                    requestAnimationFrame(animer);
+                }
+
+                requestAnimationFrame(animer);
+
+            
+        </script>
+    
+    </body>
+</html>

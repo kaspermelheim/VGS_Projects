@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stein, saks, papir</title>
+
+        <style>
+        
+            body {
+                font-family: "Century Gothic", arial, sans-serif;
+                background-color: #fac83e;
+            }
+            img {
+                margin: 10px;
+                border-radius: 100px;
+            }
+            #maskin {
+                margin-left: 110px;
+            }
+            .innpakning {
+                width: 980px;
+                margin: 120px auto;
+                font-size: 0;
+            }
+            p {
+                font-size: 21px;
+            }
+            #stein, #saks, #papir {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="innpakning">
+
+            <p id="spillerPoeng"><b>Spiller:</b> 0</p>
+            <p id="maskinPoeng"><b>Maskin:</b> 0</p>
+
+            <img src="bilder/spiller_stein.png" width="200" height="200" alt="spiller stein" id="stein">
+            <img src="bilder/spiller_saks.png" width="200" height="200" alt="spiller saks" id="saks">
+            <img src="bilder/spiller_papir.png" width="200" height="200" alt="spiller papir" id="papir">
+            <img src="bilder/maskin_ukjent.png" width="200" height="200" alt="maskin ukjent" id="maskin">
+
+            <p id="info"></p>
+            <p id="valg"></p>
+        
+        </div>
+
+        <script>
+            // Antall poeng for å vinne
+            var vinnerSum = Number(prompt("Hvor mange poeng skal gi seier?"));
+
+            // spillerPoeng poengsum
+            var spillerPoeng = 0;
+            
+            // Maskinens poengsum
+            var maskinPoeng = 0;
+            
+            
+            // Lager variabler for de tre p-elementene
+            var spillerPoengEl = document.querySelector("#spillerPoeng");
+            var maskinPoengEl = document.querySelector("#maskinPoeng");
+            var infoEl = document.querySelector("#info");
+            var valgEl = document.querySelector("#valg");
+            
+
+            // Lager variabler for de fire img-elementene
+            var steinEl = document.querySelector("#stein");
+            var saksEl = document.querySelector("#saks");
+            var papirEl = document.querySelector("#papir");
+            var maskinEl = document.querySelector("#maskin");
+
+            // Legger til click-hendelser på de tre spillerbildene
+            steinEl.addEventListener("click", sjekkResultat);
+            saksEl.addEventListener("click", sjekkResultat);
+            papirEl.addEventListener("click", sjekkResultat);
+
+            // Skriver ut "bruksanvisningen" i info-elementet
+            infoEl.innerHTML = "Velg stein, saks eller papir. Førstemann til " + vinnerSum + " poeng vinner spillet.";
+            valgEl.innerHTML = "Ditt valg: velg stein, saks eller papir."
+            
+            // Funksjon for å endre valt bilde tilbake til opprinneleg
+            function nyFarge() {
+                steinEl.src = "bilder/spiller_stein.png";
+                saksEl.src = "bilder/spiller_saks.png";
+                papirEl.src = "bilder/spiller_papir.png";
+            }
+            // Funksjonen som skal håndtere klikkene våre
+            function sjekkResultat(e) {
+                console.log("Du klikket på et bilde.");
+                console.log("Vinnersum " + vinnerSum);
+
+                // Finner først bildet som ble klikket på
+                var spillerValg = e.target.id;
+
+                // Endre så bildet til det same med grønn bakgrunn så vi enklare kan sjå kva vi har valt
+                if (spillerValg === "stein") {
+                    steinEl.src = "bilder/spiller_stein_valt.png";
+                    valgEl.innerHTML = "Ditt valg: <strong>"+spillerValg+"</strong>.";
+                    
+                    }
+                    else if (spillerValg === "saks") {
+                        saksEl.src = "bilder/spiller_saks_valt.png";
+                        valgEl.innerHTML = "Ditt valg: <strong>"+spillerValg+"</strong>.";
+                    }
+                        else {
+                            papirEl.src = "bilder/spiller_papir_valt.png";
+                            valgEl.innerHTML = "Ditt valg: <strong>"+spillerValg+"</strong>.";
+                        }
+                // Etter 2 sekund skal funksjonen nyFarge gjelde, endre bildene tilbake til opprinneleg
+                setTimeout(nyFarge, 1250);
+
+                // Skriver valgt bilde til konsollen
+                console.log("Spiller valgte: " + spillerValg);
+
+                // Velger tilfeldig for maskinen
+                var tilfeldig = Math.floor(Math.random() * 3) + 1;
+
+                // Lagrer maskinens "valg" i en variabel
+                var maskinValg;
+
+                // Gjør om maskinens valg til riktig bildefil
+                if (tilfeldig === 1) {
+                    maskinValg = "stein";
+                }
+                    else if (tilfeldig === 2) {
+                        maskinValg = "saks";
+                    }
+                        else if (tilfeldig === 3) {
+                            maskinValg = "papir";
+                        }
+
+                // Skriver maskinens valg til konsollen
+                console.log("Maskinen valgte: " + maskinValg);
+                
+                
+                // Endrer maskinens bilde
+                maskinEl.src = "bilder/maskin_" + maskinValg + ".png";
+
+                // Sammenligner for å avgjøre vinner
+                if (spillerValg === maskinValg) {
+                    // Ingen vant, gjør ingenting
+                    infoEl.innerHTML = "Begge valgte <strong>" + spillerValg + "</strong>! Ingen får poeng.";
+                }
+                    else if (spillerValg === "stein") {
+                        if (maskinValg === "saks") {
+                            // Spiller vant
+                            infoEl.innerHTML = "<strong>Stein</strong> slår <strong>saks</strong>! Poeng til spiller.";
+                    
+                            spillerPoeng++;
+                        }
+                            else if (maskinValg === "papir") {
+                                // Maskin vant
+                                infoEl.innerHTML = "<strong>Papir</strong> slår <strong>stein</strong>! Poeng til maskin."
+                                maskinPoeng++;
+                            }
+                    }
+                        else if (spillerValg === "saks") {
+                            if (maskinValg === "papir") {
+                                // Spiller vant
+                                infoEl.innerHTML = "<strong>Saks</strong> slår <strong>papir</strong>! Poeng til spiller."
+                                spillerPoeng++;
+                            }
+                                else if (maskinValg === "stein") {
+                                    // Maskin vant
+                                    infoEl.innerHTML = "<strong>Stein</strong> slår <strong>saks</strong>! Poeng til maskin."
+                                    maskinPoeng++;
+                                }
+                    }
+                            else if (spillerValg === "papir") {
+                                if (maskinValg === "stein") {
+                                    // Spiller vant
+                                    infoEl.innerHTML = "<strong>Papir</strong> slår <strong>stein</strong>! Poeng til spiller."
+                                    spillerPoeng++;
+                                }
+                                    else if (maskinValg === "saks") {
+                                        // Maskin vant
+                                        infoEl.innerHTML = "<strong>Saks</strong> slår <strong>papir</strong>! Poeng til maskin."
+                                        maskinPoeng++;
+                                    }
+                            }
+
+                            
+
+                    // Endrer poengsummene i skjermbildet
+                    spillerPoengEl.innerHTML = "<b>Spiller: </b>" + spillerPoeng;
+                    maskinPoengEl.innerHTML = "<b>Maskin: </b>" + maskinPoeng;
+    
+                    // Sjekker om noen har vunnet
+                    if ((spillerPoeng === vinnerSum)||(maskinPoeng === vinnerSum)) {
+                        // Noen har vunnet
+                        //Fjerner hendelser, slik at man ikke kan klikke på bildene
+
+                        console.log("Vinner kåret.");
+                        steinEl.removeEventListener("click", sjekkResultat);
+                        saksEl.removeEventListener("click", sjekkResultat);
+                        papirEl.removeEventListener("click", sjekkResultat);
+
+                        // Endrer musepekeren, slik at bildene virker "deaktiverte"
+                        steinEl.style.cursor = "auto";
+                        saksEl.style.cursor = "auto";
+                        papirEl.style.cursor = "auto";
+                        
+                        // Skriver ut en avslutningsbeskjed
+                        if (spillerPoeng === vinnerSum) {
+                            infoEl.innerHTML = "Gratulerer! Du vant!";
+                        }
+                            else {
+                                infoEl.innerHTML = "Auda! Du ble slått av maskin...";
+                            }
+                    } // SLutt test vinner kåret
+
+            }
+        
+        </script>
+    
+    </body>
+</html>

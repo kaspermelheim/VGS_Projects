@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Måleeiningar</title>
+        <style>
+
+            body { 
+                margin-top: 20px;
+                background-color: lightblue;
+            }
+            h1 { 
+                color: grey;
+                font-size: 60px;
+            }
+            b {
+                color: darkslategray;
+            }
+            
+            /* Prøvde her å implementere radio buttons for å velge kva slags kalkulator ein vile nytte men droppa det pga. tid.
+            #rekn1, #rekn2 {
+                display: none;
+            } */
+            
+        </style>
+        </head>
+        <body>
+                <center>
+                    
+                <h1>Måleeiningar</h1>
+                
+                <!-- Prøvde her å implementere radio buttons for å velge kva slags kalkulator ein vile nytte
+                    men droppa det pga. tid.
+                <input type="radio" name="radio" value="1" id="kalkulator1">Rekne frå cup, pint eller ounce til desiliter.
+                <input type="radio" name="radio" value="2" id="kalkulator2">Rekne fra desiliter til cup, pint eller ounce. -->
+
+                <div id="rekn1">
+                <h2>Frå x til desiliter</h2>
+                <br>
+                <b>Skriv inn eit tal:</b>
+
+                <input type="number" id="tal1" placeholder="Skriv inn eit tal">
+        
+                <br><br>
+                
+
+                <button id="knapp">Cup</button>
+                <button id="knapp1">Pint</button>
+                <button id="knapp2">Ounce</button>
+
+                <p id="resultat"></p>
+            <div>
+
+            
+            <div id="rekn2">
+                <h2 style="margin-top:60px;">Frå desiliter til x</h3>
+                <br>
+                <b>Skriv inn eit tal:</b>
+        
+                <input type="number" id="tal2" placeholder="Skriv inn eit tal">
+            
+                <br><br>
+                    
+        
+                <button id="knapp3">Cup</button>
+                <button id="knapp4">Pint</button>
+                <button id="knapp5">Ounce</button>
+        
+                <p id="resultat2"></p>
+            </div>
+
+    
+        <script>
+        // Hentar element
+        var tal1El = document.querySelector("#tal1");
+        var knappEl = document.querySelector("#knapp");
+        var knapp1El = document.querySelector("#knapp1");
+        var knapp2El = document.querySelector("#knapp2");
+        var resultatEl = document.querySelector("#resultat");
+
+        // Legg til hendingar på knappar
+        knappEl.addEventListener("click", finnCup);
+        knapp1El.addEventListener("click", finnPint);
+        knapp2El.addEventListener("click",finnOunce);
+        
+        /* Prøvde her å implementere radio buttons for å velge kva slags kalkulator ein vile nytte men droppa det pga. tid.
+
+        var kalkulator1El = document.querySelector("#kalkulator1");
+        var kalkulator2El = document.querySelector("#kalkulator2");
+        var rekn1El = document.querySelector("rekn1");
+        var rekn2El = document.querySelector("rekn2");
+
+        if (kalkulator1El.checked) {
+            rekn1El.style.display = "block";
+        } else if (kalkulator2El.checked) {
+            rekn2El.style.display = "block";
+        } */
+        
+
+        function finnCup() { 
+            var tal1 = Number(tal1El.value);
+            var sum = tal1 * 2.5;
+
+            resultatEl.innerHTML = tal1 + " cups er det same som " + sum.toFixed(2) + "dL.";
+             }
+
+        function finnPint() { 
+            var tal1 = Number(tal1El.value);
+            var sum = tal1 * 5.7;
+
+            resultatEl.innerHTML = tal1 + " pints er det same som "+sum.toFixed(2)+"dL";
+             }
+
+
+        function finnOunce() { 
+            var tal1 = Number(tal1El.value);
+            var sum = tal1 * 0.28;
+
+            resultatEl.innerHTML = tal1 + " ounce er det same som "+ sum.toFixed(2) + "dL";
+             }
+
+        var tal2El = document.querySelector("#tal2");
+        var knapp3El = document.querySelector("#knapp3");
+        var knapp4El = document.querySelector("#knapp4");
+        var knapp5El = document.querySelector("#knapp5");
+        var resultat2El = document.querySelector("#resultat2");
+
+        // Legg til hendingar på knappar
+        knapp3El.addEventListener("click", fraCup);
+        knapp4El.addEventListener("click", fraPint);
+        knapp5El.addEventListener("click", fraOunce);
+
+        function fraCup() {
+            var tal2 = Number(tal2El.value);
+            var sum = tal2 / 2.5;
+
+            resultat2El.innerHTML = tal2 + "dL er det same som " + sum.toFixed(2) + "cups.";
+        }
+
+        function fraPint() {
+            var tal2 = Number(tal2El.value);
+            var sum = tal2 / 5.7;
+
+            resultat2El.innerHTML = tal2 + "dL er det same som " + sum.toFixed(2) + "pints.";
+        }
+
+        function fraOunce() {
+            var tal2 = Number(tal2El.value);
+            var sum = tal2 / 0.28;
+
+            resultat2El.innerHTML = tal2 + "dL er det same som " + sum.toFixed(2) + "ounce.";
+        }
+             
+        </script>
+</body>
+</html>

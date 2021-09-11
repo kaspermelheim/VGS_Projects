@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+        <style>
+            .klasse1 {
+                background-color: red;
+                width: 90px;
+            }
+            .klasse2 {
+                background-color: green;
+                width: 90px;
+            }
+            
+            </style>
+    </head>
+    <body>
+        
+        <p>Hva er hovedstaden i Burkina Faso?</p>
+
+        <p id="feil1">London</p>
+        <p id="feil2">Juba</p>
+        <p id="rett">Quagadogou</p>
+        <p id="feil3">Bamako</p>
+
+        <script>
+
+            var feil1El = document.querySelector("#feil1");
+            var feil2El = document.querySelector("#feil2");
+            var feil3El = document.querySelector("#feil3");
+            var rettEl = document.querySelector("#rett");
+
+            feil1El.addEventListener("click", sjekkSvar);
+            feil2El.addEventListener("click", sjekkSvar);
+            feil3El.addEventListener("click", sjekkSvar);
+            rettEl.addEventListener("click", sjekkSvar);
+
+            function sjekkSvar(e) {
+                var valtSvar = e.target;
+                console.log(valtSvar.id);
+
+                if (valtSvar.id === "feil1") {
+                    feil1El.className = "klasse1";
+                }
+                    else if (valtSvar.id === "feil2") {
+                        feil2El.className = "klasse1";
+                    }
+                        else if (valtSvar.id === "feil3") {
+                            feil3El.className = "klasse1";
+                        }
+                            else {
+                                rettEl.className = "klasse2";
+                            }
+            }
+
+        </script>
+    
+    </body>
+</html>

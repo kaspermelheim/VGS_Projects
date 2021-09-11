@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+        .innpakning {
+            width: 50%;
+            margin: auto;
+            padding: 7px;
+            background-color: rgb(228, 186, 145);
+            border: 1px solid #555;
+            text-align: center;
+        }
+        button {
+            margin: 12px 0px;
+            background-color: lightblue;
+            border: 1px solid #555;
+            text-align: center;
+            padding: 8px 15px;
+        }
+        button:hover {
+            background-color: rgb(37, 193, 245);
+        }
+        button:active {
+            background-color: rgb(2, 117, 155);
+        }
+        #framgrunnsvindauge {
+            background-color: #FFFFFF;
+            padding: 10px;
+            border: 2px solid black;
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 320px;
+            height: 365px;
+        }
+        #lukkvindauge {
+            margin-top: 15px;
+        }
+        
+</style>
+    </head>
+    <body>
+
+        <div class="innpakning">
+            <h1>Where is my spaghet?</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum elementum ipsum et aliquet semper. 
+                Mauris sollicitudin at nisi eu lacinia. Duis pharetra sit amet quam ornare dictum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla facilisi. In convallis commodo erat eget congue. 
+                Aliquam finibus, enim quis commodo tempor, nisl lorem sodales nulla, auctor dictum purus odio non arcu. In a congue mauris.</p>
+            <p>Vestibulum congue hendrerit tincidunt. Nunc eget ante tortor. 
+                Duis semper, quam nec porttitor varius, arcu ex pulvinar lorem, quis facilisis orci dui sed urna.
+                Morbi elementum lectus id orci hendrerit malesuada. Aenean venenatis quam eros, ornare ullamcorper lorem egestas ut. 
+                Sed aliquam libero in maximus efficitur. Ut consequat ornare ipsum nec interdum. 
+                Duis vitae justo rhoncus, mollis est at, pellentesque felis. Sed quis congue mauris. 
+                Donec semper, ex sit amet dapibus facilisis, purus nunc auctor ante, et placerat magna orci at libero. 
+                Suspendisse potenti. Donec viverra posuere finibus. 
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+                Nullam pellentesque, risus ac scelerisque imperdiet, leo odio maximus augue, et tempus turpis neque nec libero. 
+                Suspendisse eget diam urna.</p>
+                <button id="visvindauge">Vis film</button>
+            <div id="framgrunnsvindauge">
+                <video width="320" height="180" controls>
+                    <source src="./Video/Dansere/dans.mp4" type="video/mp4">
+                    Denne nettleseren støttar ikkje video-elementet.
+                </video>
+                <iframe width="320" height="180"
+                        src="https://www.youtube.com/embed/TYRico8eNtg?autoplay=1">
+                </iframe>
+                <button id="lukkvindauge">Lukk film</button>
+            </div>
+
+        </div>
+        <script>
+
+            var visknapp = document.querySelector("#visvindauge");
+            var skjulknapp = document.querySelector("#lukkvindauge");
+            var vindauge = document.querySelector("#framgrunnsvindauge");
+            var minFilm = document.querySelector("video");
+
+            visknapp.addEventListener("click", visvindauge);
+            skjulknapp.addEventListener("click", lukkvindauge);
+
+            function visvindauge() {
+                var topp = (window.innerHeight - 266) / 2;
+                var venstre = (window.innerWidth - 346) / 2;
+                vindauge.style.left = venstre + "px";
+                vindauge.style.top = topp + "px";
+                vindauge.style.display = "initial";
+                minFilm.play();
+
+            }
+
+            function lukkvindauge() {
+                vindauge.style.display = "none";
+                minFilm.pause();
+            }
+
+
+        </script>
+
+    </body>
+</html>

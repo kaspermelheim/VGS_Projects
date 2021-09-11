@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <title>Fahrenheit til Celsius</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="brukerinput.css">
+<style>
+body {
+  font-family: "Century Gothic", arial, sans-serif;
+  background-color: #7FA793;
+}
+#innpakning {
+  width: 60%;
+  display: flex;
+  margin: 120px auto;
+}
+#venstre, #midt, #hoyre {
+  flex: 1;
+}
+#venstre, #hoyre {
+  padding-top: 50px;
+}
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="innpakning">
+  <div id="venstre">
+    <h1> Fahrenheit </h1>
+    <input type="number" id="fahrenheit">
+	<button>Gjør om</button>
+  </div>
+  <div id="midt">
+    <img src="termometer.png" width="170" height="350" alt="Termometer">
+  </div>
+  <div id="hoyre">
+    <h1> Celsius </h1>
+    <h2 id="celsius"> ... &deg;C </h2>
+  </div>	
+</div>
+  
+<script>
+var knappEl = document.querySelector("button");
+var fahrenheitEl = document.querySelector("#fahrenheit");
+var celsiusEl = document.querySelector("#celsius");
+
+knappEl.addEventListener("click", beregn);
+
+function beregn() {
+  var fahrenheit = parseInt(fahrenheitEl.value);
+  var celsius = (fahrenheit - 32) * (5/9);
+	
+  celsiusEl.innerHTML = Math.round(celsius,0) + "&deg;C" ;
+}
+
+</script>
+</body>
+</html>

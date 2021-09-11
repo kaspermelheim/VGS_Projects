@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Animasjon</title>
+        <style>
+            @keyframes fargespekter {
+                0% {background-color: rgb(100,200,33);}
+                25% {background-color: rgb(226, 226, 11);}
+                50% {background-color: rgb(200, 58, 33);}
+                75% {background-color: rgb(68, 18, 161);}
+                100% {background-color: rgb(100,200,33);}
+            }
+            body {
+                animation: fargespekter 10s infinite;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .inpakning {
+                margin: auto;
+                width: 50%;
+            }
+            h1 {
+                font-size: 40px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color: white;
+            }
+            button {
+                background-color: black;
+                color: white;
+                width: 100%;
+                padding: 15px;
+                margin-top: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            input {
+                width: 100%;
+                background-color: white;
+                border: solid 1px grey;
+                padding: 1px;
+                text-align: center;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            div {
+                border: solid 2px black;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="innpakning">
+            <h1>Kahoot!</h1>
+            <input type="text" placeholder="Game PIN"><br>
+            <button>Enter</button>
+        </div>
+
+    
+    </body>
+</html>

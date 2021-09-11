@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Div</title>
+        <style>
+            body {
+                background-color: #323232;
+            }
+            div {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        </style> 
+    </head>
+    <body>
+    
+            
+
+        <script>
+             
+                var bodyEl = document.querySelector("body");
+             // Lytter etter klikk-hendelser
+                bodyEl.addEventListener("click", lagFirkanter);
+
+                function lagFirkanter(e) {
+                    var x = e.clientX;
+                    var y = e.clientY;
+                    for (var i = -5; i < 5; i++) { 
+                        var forskyvningX = Math.random() * i * 20;
+                        var forskyvningY = Math.random() * i * 20;
+                        var farge = Math.floor(Math.random() * 360);
+                        var divEl = document.createElement("div");
+                        divEl.style.backgroundColor = "hsl(" + farge + ", 70%, 50%, 0.5)";
+                        divEl.style.left = e.clientX + forskyvningX;
+                        divEl.style.top = e.clientY + forskyvningY;
+                        bodyEl.appendChild(divEl);
+                    }   
+                }  
+        
+        </script>
+    
+    </body>
+</html>

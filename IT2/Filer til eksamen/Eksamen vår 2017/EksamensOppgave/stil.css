@@ -1,0 +1,57 @@
+body {
+    background-color: lightgrey;
+    font-family: sans-serif;
+    margin-left: 20px
+}
+
+div.box1 {
+    background-color: yellow;
+    width: 600px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: auto;
+}
+h1,h2 {
+    color: white;
+    text-shadow: 0px 0px 8px black;
+}
+
+h1 {
+    font-size: 30pt;
+    text-align: center;
+}
+
+
+#resultat {
+    color: black;
+    font-size: 30px;
+}
+
+
+/*
+ *  knapper (button)
+ *  rød knapp ved å legge til class="ok"
+ *  grønn knapp ved å legge til class="avbryt"
+ */
+button {
+  padding: 10px; /* luft inni knappen */
+  color: white; /* hvit tekstfarge */
+  text-shadow: 0 -1px 1px #335166; /* skygge på teksten */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* lys grå kantlinje */
+  border-radius: 4px; /* avrunder kantene */
+  background: linear-gradient(rgba(255,255,255,0.2), transparent);
+  background-color: #5588AA; /* blå bakgrunnsfarge */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7); /* skygge bak knappen */
+  outline: none; /* fjerne ekstra kantlinje */
+  cursor: pointer; /* gjør om musepekeren til en hånd */
+}
+
+button:active {
+  transform: translate(1px, 1px); /* 1 px til høyre og 1 px ned */
+}
+button.ok {
+  background-color: #66BB00; /* grønn */
+}
+button.avbryt {
+  background-color: #CC0000; /* rød */
+}

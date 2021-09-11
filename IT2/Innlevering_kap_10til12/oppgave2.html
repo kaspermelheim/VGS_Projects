@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="hangman.jpg" />
+        <meta charset="UTF-8"></meta>
+        <title>Document</title>
+        <style>
+
+        div#fixed {
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            width: 160px;
+            font-size: 18px;
+        }
+        div#txt {
+            position: fixed;
+            right: 5px;
+            bottom: 40px;
+            width: 75px;
+            font-size: 16px;
+        }
+        .klasse1 {
+            background-color: rgb(0, 190, 0);
+        }
+
+        .klasse2 {
+            background-color: red;
+        } 
+
+        .klasse1, .klasse2 {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+
+        body {
+            background-color: rgb(243, 176, 108);
+            font-size: 14px;
+            color: #323232;
+        }
+        .innpakning {
+            width: 50%;
+            margin: auto;
+            padding: 7px;
+            background-color: rgb(228, 186, 145);
+            border: 1px solid #555;
+        }
+        input[type=text] {
+            width: 50%;
+            padding: 8px 10px;
+            margin: 0px;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            outline: none;
+        }
+
+        input[type=text]:focus {
+            background-color: lightblue;
+        }
+        button {
+            background-color: lightblue;
+            border: 1px solid #555;
+            text-align: center;
+            padding: 8px 15px;
+        }
+        button:hover {
+            background-color: rgb(37, 193, 245);
+        }
+        button:active {
+            background-color: rgb(2, 117, 155);
+        }
+        </style>
+    </head>
+    <body onload="startTime()">
+        <div id="txt"></div>
+        <div id="fixed">
+             <p>© Kasper Melheim</p>
+        </div>
+
+        <div class="innpakning">
+        
+        <h1 align="center" >Gjettespel</h1>
+
+        <p id="beskjeder" style="font-size:20px;"><u>Beskjeder:</u></p>
+        <p id="bokstaverLoysing">Antall bokstavar i løysingsord: <strong>6</strong></p>
+        <p id="antallBokstaver">Antall bokstavar gjetta: </p>
+        <p id="brukteBokstaver">Brukte bokstavar: </p><br>
+        <p id="riktigeBokstaver" style="font-size:24px; font-weight:bold;">Riktige bokstaver: </p><br>
+        <p id="sjanserIgjen">Antall sjanser igjen:</p>
+
+        <p id="feilA" class="klasse1">&nbsp;</p>
+        <p id="feilB" class="klasse1">&nbsp;</p>
+        <p id="feilC" class="klasse1">&nbsp;</p>
+        <p id="feilD" class="klasse1">&nbsp;</p>
+        <p id="feilE" class="klasse1">&nbsp;</p>
+
+        <p id="mottaBokstav">
+                <input type="text" name="bokstav" placeholder="Skriv ein bokstav her" 
+                id="bokstav" maxlength="1" autofocus>
+                <button id="knapp">Vel</button>
+        </p>
+
+        </div>
+
+        <script>
+            // Hentar tekstfeltet
+            var tekstfeltEl = document.querySelector("#bokstav");
+
+            // Hentar inn p element
+            var sjanserIgjenEl = document.querySelector("#sjanserIgjen");
+            var riktigeBokstaverEl = document.querySelector("#riktigeBokstaver");
+            var brukteBokstaverEl = document.querySelector("#brukteBokstaver");
+            var antallBokstaverBruktEl = document.querySelector("#antallBokstaver");
+
+            // Hentar knapp
+            var knappEl = document.querySelector("#knapp");
+            // Gi knapp hendelse
+            knappEl.addEventListener("click", taimotBokstav);
+
+            // Løysingsordet for spelet
+            var losningsord = "BERGEN";
+
+            // Set variabel av brukte bokstavar til tom array
+            var brukteBokstaver = [];
+
+            // Array med alle dei ulike posisjonane av bokstavar i løysingsord
+            var riktigeBokstaver = ["_","_","_","_","_","_"];
+
+            // Tal på antall rett og feil gjetta
+            var antallRett = 0;
+            var antallFeil = 0;
+
+            // Antall sjanser
+            var antallSjanser = 5;
+
+            // Antall bokstavar gjetta
+            var antallBokstaver = 0;
+
+            // Antall bokstavar i løysingsord
+            riktigeBokstaverEl.innerHTML = "Løysingsord: " + riktigeBokstaver;
+ 
+            //Hentar alle p element som skal endre farge
+            var fargetabell = document.querySelectorAll(".klasse1");
+
+            // Funksjon for å fjerne hendelsar
+            function fjernHendelsar() {
+                knappEl.removeEventListener("click", taimotBokstav);
+            }
+
+            //Funksjon som tek imot bokstav
+            function taimotBokstav() {
+
+            //Hentar verdien i tekstfeltet
+            var gjettetBokstav = tekstfeltEl.value;
+
+            // Gjer om til stor bokstav
+            gjettetBokstav = gjettetBokstav.toUpperCase();
+
+            // Sjekkar om bokstaven er gjetta, returnerer -1 dersom bokstaven ikkje er ein del av løsying
+            if (brukteBokstaver.indexOf(gjettetBokstav) === -1) {
+                //Brukar push og plasserer bokstav i brukte bokstaver
+                brukteBokstaver.push(gjettetBokstav);
+
+                //Sjekkar om bokstaven er i løysingsord
+                if(losningsord.indexOf(gjettetBokstav) === -1) {
+                    //Dersom ikkje
+                    antallSjanser -= 1;
+                } 
+                    else {
+                        //Dersom den er i ordet
+                        //Plussar på 1 in på antall rett bokstavar 
+                        antallRett += 1;
+                        //Sjekkar om det er fleire tilfelle av bokstaven i løysingsord
+                        for (var i = 0; i < losningsord.length; i++) {
+                            //Om bokstav i løysings "i" i løysingsordet er den gjetta bokstaven
+                            if(losningsord[i] === gjettetBokstav) {
+                                //Set inn gjetta bokstav på rett plass i løysingordet
+                                riktigeBokstaver[i] = gjettetBokstav;
+                            }
+                        }
+                    }
+            } else {
+                // Dersom bokstaven er gjetta allereie skriv vi ut denne meldinga
+                alert("Bokstaven er allereie gjetta!");
+            }       // Sjekkar om spelar er tom for sjanser
+                    if (antallSjanser === 0) {
+                        //Skriv ut melding om at spelet er tapt
+                        alert("Game over! Press f5 for å starte på nytt.")
+                        //Fjernar hendelsar 
+                        fjernHendelsar();
+                    }
+                //Sjekkar om spelar har fåt alle rett
+                if (antallRett === 5) {
+                    //Skriv melding til spelar
+                    alert("Gratulerar, du vant! Press f5 for å starte på nytt.");
+                    //Fjernar hendelsar 
+                    fjernHendelsar();
+                }
+
+                //If else løkke som endrar bakgrunnsfarge til rød på p element
+                else if (antallSjanser === 0) {
+                    fargetabell[0].className = "klasse2";
+                }
+                    else if (antallSjanser === 1) {
+                        fargetabell[1].className = "klasse2";
+                    }
+                        else if (antallSjanser === 2) {
+                            fargetabell[2].className = "klasse2";
+                        }
+                            else if (antallSjanser === 3) {
+                                fargetabell[3].className = "klasse2";
+                            }
+                                else if (antallSjanser === 4) {
+                                    fargetabell[4].className = "klasse2";
+                                }
+                                    else {
+                                        fargetabell.className = "klasse1";
+                                    } 
+                                    
+                                
+            
+            //Finn ut kor mange bokstavar spelar har brukt, tel opp
+            for (var j = 0; j < brukteBokstaver.length; j++) {
+                //Aukar antall bokstavar vi har brukt for kvar bokstav vi skriv
+                antallBokstaver = j + 1;
+            }
+
+            //Sorterer dei brukte bokstavane 
+            brukteBokstaver.sort();
+
+            //Skriv ut beskjeder om brukte, riktige og antall bokstavar, og antall sjanser igjen
+            brukteBokstaverEl.innerHTML = "Brukte bokstavar: " + brukteBokstaver;
+            riktigeBokstaverEl.innerHTML = "Løysingsord: " + riktigeBokstaver;
+            sjanserIgjenEl.innerHTML = "Antall sjanser igjen: <strong>" + antallSjanser + "</strong>";
+            antallBokstaverBruktEl.innerHTML = "Antall bokstavar gjetta: " + antallBokstaver;
+            }
+
+            //2 funksjonar for ei digital klokke
+            function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+            h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+            }
+
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // Legg til 0 forann nummer < 10
+                return i;
+            }
+
+
+        
+        </script>
+
+        
+    
+    </body>
+</html>

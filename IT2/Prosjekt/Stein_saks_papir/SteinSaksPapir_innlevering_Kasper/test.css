@@ -1,0 +1,110 @@
+body {
+    font-family: "Century Gothic", arial, sans-serif;
+    background-color: #fac83e;
+}
+#heading {
+    width: 350px;
+    margin: 10px auto;
+    font-size: 40px;
+    margin-top: 30px;
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    padding-left: 4px;
+    font-weight: normal;
+    text-align: center;
+}
+div#fixed {
+    position: fixed;
+    bottom: -20px;
+    right: 10px;
+    width: 185px;
+}
+div#txt {
+    position: fixed;
+    right: 10px;
+    bottom: 25px;
+    width: 65px;
+}
+.seier {
+    font-family: "Century Gothic", arial, sans-serif;
+    background-color: #43ca00;
+}
+.tap {
+    font-family: "Century Gothic", arial, sans-serif;
+    background-color: #ff0d0c;
+}
+img {
+    margin: 10px;
+    border-radius: 100px;
+}
+#maskin {
+    margin-left: 110px;
+}
+.innpakning {
+    width: 980px;
+    margin: 30px auto;
+    font-size: 0;
+}
+p {
+    font-size: 21px;
+}
+#stein, #saks, #papir {
+    cursor: pointer;
+}
+.grønn {
+    color: #43ca00;
+}
+.klasse1 {
+    color: black;
+    width: 50%;
+}
+.klasse2 {
+    color: black;
+    width: 42%;
+}
+#knapp {
+    text-align: center;
+}
+/* Button end */
+.btn {
+    background-color: #fac83e;
+    border-radius: 5px;
+    border: none;
+    font-family: "Century Gothic", arial, sans-serif;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.btn:hover {
+    color: black;
+    background-color: #ff4b39;
+    cursor: pointer;
+}
+.btn:active {
+    background-color: rgb(255, 147, 125);
+}
+
+/* Button start */
+.btn1 {
+    background-color: #43ca00;
+    border: none;
+    border-radius: 5px;
+    font-family: "Century Gothic", arial, sans-serif;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.btn1:hover {
+    color: black;
+    background-color: #ff4b39;
+    cursor: pointer;
+}
+.btn1:active {
+    background-color: rgb(255, 147, 125);
+}

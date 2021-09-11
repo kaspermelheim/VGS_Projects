@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS</title>
+        <style>
+              body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+
+            img {
+                margin: 20px;
+                transition: all 400ms; 
+            }
+            
+
+            img { 
+                transform-origin:50% 50%;
+                animation:2s rotateRight infinite linear; 
+            }
+
+            @keyframes rotateRight {
+                100%{ transform:rotate(360deg); }
+            }
+                        
+        </style>
+    </head>
+    <body>
+        
+        <div>
+
+            <img id="image_canv" src="lightsaber.png" class="rotate90" width="350px" height="350px">
+            
+
+        </div>
+
+        <script>
+
+            var imgEl = document.querySelector("img");
+            var knappEl = document.querySelector("button");
+
+            knappEl.addEventListener("click", roter);
+
+            function roter() {
+                if (imgEl.className === ".rotate90") {
+                imgEl.className = ".rotate180";
+                }
+                    else {
+                        imgEl.className = ".rotate90";
+                    }
+            }
+            
+          
+        
+        </script>
+    
+    </body>
+</html>

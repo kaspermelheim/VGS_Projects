@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <script>
+
+            var bilmerke = [
+                { forkorting: "BMW", 
+                bilmerke: "BMW", land: "Norge" },
+                { forkorting: "Honda", 
+                bilmerke: "Honda", land: "Kina" },
+                { forkorting: "Mitshubishi", 
+                bilmerke: "Mitsch", land: "Danmark" },
+                { forkorting: "Yamaha", 
+                bilmerke: "Yama", land: "Tyskland" },
+                { forkorting: "Corvette", 
+                bilmerke: "Corv", land: "Island" },
+            ]
+
+            function samanliknNamn(a, b) {
+                if (a.forkorting > b.forkorting) {
+                    return 1;
+                }   else if (a.forkorting < b.forkorting) {
+                    return -1;
+                }   else {
+                    return 0;
+                }
+            }
+            bilmerke.sort(samanliknNamn);
+            for (var eigenskap in bilmerke) {
+                console.log(bilmerke[eigenskap]);
+            }
+
+
+            
+            
+
+            
+
+           
+
+        </script>
+
+    </body>
+</html>
